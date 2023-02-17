@@ -13,9 +13,10 @@ router.get("/", function (req, res, next) {
 // REVISIT THIS...SEEMS TO BE ACCESSING API, BUT RETURNING UNEXPECTED RESULTS
 const searchGoogleBooks = async (req, res) => {
   try {
-    const searchTerm = req.params;
+    const searchTerm = req.params; // Seems like the problem might be here?
+    // const apiKey = AIzaSyBUCVbvmy5CpFXIY9_eqfQYYo5hLB30KFg;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=en&maxAllowedMaturityRating=not-mature`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);
