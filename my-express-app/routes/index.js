@@ -3,11 +3,30 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper"); //So this file can access the helper functions.
+const fetch = require("node-fetch");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.send("Welcome to My Library API"); //This is returning something else? The index.html in the public folder for Express
 });
+
+// REVISIT THIS...SEEMS TO BE ACCESSING API, BUT RETURNING UNEXPECTED RESULTS
+const searchGoogleBooks = async (req, res) => {
+  try {
+    const searchTerm = req.params;
+    const result = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=en&maxAllowedMaturityRating=not-mature`
+    );
+    if (!result.ok) {
+      setError(`An error has occured: ${response.status}`);
+    } else {
+      let data = await result.json();
+      res.send(data);
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 
 const getItems = async (req, res) => {
   try {
@@ -24,6 +43,15 @@ router.get("/mylibrary", async (req, res) => {
   try {
     let results = await db(`SELECT * FROM mylibrary;`);
     res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// GET TITLE BASED ON SEARCH
+router.get("/mylibrary/:searchTerm", async (req, res) => {
+  try {
+    searchGoogleBooks(req, res);
   } catch (err) {
     res.status(500).send(err);
   }
