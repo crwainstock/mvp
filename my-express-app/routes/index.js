@@ -29,7 +29,7 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-//GET ITEM BY ID
+//GET ITEM BY ID -- Seems to be working.
 router.get("/mylibrary/:id", async (req, res) => {
   try {
     let results = await db(
