@@ -32,10 +32,11 @@ const searchGoogleBooks = async (req, res) => {
 const getItems = async (req, res) => {
   try {
     const result = await db("SELECT * FROM mylibrary");
-    //loop through data and grab ids
+    // To get items in database if they're saved with Google Books API data id:
+    // loop through data and grab ids
     // ids in Google Books API data = result.data.items[0].id
-    //search ids using searchGoogleBooks()
-    //return all relevant book data
+    // search ids using searchGoogleBooks()
+    // return all relevant book data
     res.send(result.data);
   } catch (err) {
     res.status(500).send(err.message);
@@ -55,7 +56,7 @@ router.get("/mylibrary", async (req, res) => {
 // GET TITLE BASED ON SEARCH -- from Google Books API
 router.get("/mylibrary/:searchTerm", async (req, res) => {
   try {
-    searchGoogleBooks(req, res);
+    searchGoogleBooks(req, res); //function written line 14
   } catch (err) {
     res.status(500).send(err);
   }
