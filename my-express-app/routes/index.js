@@ -10,12 +10,10 @@ router.get("/", function (req, res, next) {
   res.send("Welcome to My Library API"); //This is returning something else? The index.html in the public folder for Express
 });
 
-// REVISIT THIS...SEEMS TO BE ACCESSING API, BUT RETURNING UNEXPECTED RESULTS
+// This is working in Postman now, yay!
 const searchGoogleBooks = async (req, res) => {
   try {
-    const { searchTerm } = req.body; // Seems like the problem might be here?
-    // const apiKey = AIzaSyBUCVbvmy5CpFXIY9_eqfQYYo5hLB30KFg;
-    // Idk. When I try to add the key, it doesn't work. But it seems to sort of work without a key...
+    const { searchTerm } = req.body;
     const result = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
@@ -30,11 +28,15 @@ const searchGoogleBooks = async (req, res) => {
   }
 };
 
+//Get all items in library
 const getItems = async (req, res) => {
   try {
     const result = await db("SELECT * FROM mylibrary");
-    const items = result.data;
-    res.send(items);
+    //loop through data and grab ids
+    // ids in Google Books API data = result.data.items[0].id
+    //search ids using searchGoogleBooks()
+    //return all relevant book data
+    res.send(result.data);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -72,6 +74,7 @@ router.get("/mylibrary/:id", async (req, res) => {
 });
 
 // ADD ITEMS TO LIBRARY -- Seems to be working in Postman -- only title, author, description, though.
+// Need to revise this if simplifying database, this works with all info in database
 router.post("/mylibrary", async (req, res) => {
   const { title, author, description } = req.body;
   const sql = `INSERT INTO mylibrary (title, author, description) VALUES ("${title}", "${author}", "${description}")`;
