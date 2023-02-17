@@ -19,4 +19,39 @@ const getItems = async (req, res) => {
   }
 };
 
+// GET ALL LIBRARY ITEMS -- Seems to be working.
+router.get("/mylibrary", async (req, res) => {
+  try {
+    let results = await db(`SELECT * FROM mylibrary;`);
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//GET ITEM BY ID
+router.get("/mylibrary/:id", async (req, res) => {
+  try {
+    let results = await db(
+      `SELECT * FROM mylibrary WHERE id=${req.params.id} ORDER BY id ASC;`
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Seems to be working in Postman -- only title, author, description, though.
+router.post("/mylibrary", async (req, res) => {
+  const { title, author, description } = req.body;
+  const sql = `INSERT INTO mylibrary (title, author, description) VALUES ("${title}", "${author}", "${description}")`;
+
+  try {
+    await db(sql);
+    getItems(req, res);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;
