@@ -13,8 +13,9 @@ router.get("/", function (req, res, next) {
 // REVISIT THIS...SEEMS TO BE ACCESSING API, BUT RETURNING UNEXPECTED RESULTS
 const searchGoogleBooks = async (req, res) => {
   try {
-    const searchTerm = req.params; // Seems like the problem might be here?
+    const { searchTerm } = req.body; // Seems like the problem might be here?
     // const apiKey = AIzaSyBUCVbvmy5CpFXIY9_eqfQYYo5hLB30KFg;
+    // Idk. When I try to add the key, it doesn't work. But it seems to sort of work without a key...
     const result = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
@@ -49,7 +50,7 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH
+// GET TITLE BASED ON SEARCH -- from Google Books API
 router.get("/mylibrary/:searchTerm", async (req, res) => {
   try {
     searchGoogleBooks(req, res);
