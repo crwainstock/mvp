@@ -41,10 +41,24 @@ router.get("/mylibrary/:id", async (req, res) => {
   }
 });
 
-// Seems to be working in Postman -- only title, author, description, though.
+// ADD ITEMS TO LIBRARY -- Seems to be working in Postman -- only title, author, description, though.
 router.post("/mylibrary", async (req, res) => {
   const { title, author, description } = req.body;
   const sql = `INSERT INTO mylibrary (title, author, description) VALUES ("${title}", "${author}", "${description}")`;
+
+  try {
+    await db(sql);
+    getItems(req, res);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
+//UPDATE RATING AND REVIEW -- works in postman
+router.put("/mylibrary/:id", async (req, res) => {
+  const { rating, review } = req.body;
+  const id = req.params.id;
+  const sql = `UPDATE mylibrary SET rating = "${rating}", review = "${review}" WHERE id = ${id}`;
 
   try {
     await db(sql);
