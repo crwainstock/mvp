@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use("/", indexRouter); //This is the base URL
 app.use("/users", usersRouter);
 
 module.exports = app;
