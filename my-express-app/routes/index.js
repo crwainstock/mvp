@@ -87,8 +87,7 @@ router.get("/mylibrary/:id", async (req, res) => {
   }
 });
 
-// ADD ITEMS TO LIBRARY -- Seems to be working in Postman -- only title, author, description, though.
-// Need to revise this if simplifying database, this works with all info in database
+// ADD ITEMS TO LIBRARY -- seems to work in postman. not sure if it's complete, though.
 router.post("/mylibrary", async (req, res) => {
   const { id } = req.body;
   const sql = `INSERT INTO mylibrary (id) VALUES ("${id}")`;
