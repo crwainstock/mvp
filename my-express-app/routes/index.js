@@ -29,15 +29,28 @@ const searchGoogleBooks = async (req, res) => {
 };
 
 //Get all items in library
+// const getItems = async (req, res) => {
+//   try {
+//     const result = await db("SELECT * FROM mylibrary");
+//     // To get items in database if they're saved with Google Books API data id:
+//     // loop through data and grab ids
+//     // ids in Google Books API data = result.data.items[0].id
+//     // search ids using searchGoogleBooks()
+//     // return all relevant book data
+//     res.send(result.data);
+//   } catch (err) {
+//     res.status(500).send(err.message);
+//   }
+// };
+
 const getItems = async (req, res) => {
   try {
-    const result = await db("SELECT * FROM mylibrary");
-    // To get items in database if they're saved with Google Books API data id:
-    // loop through data and grab ids
-    // ids in Google Books API data = result.data.items[0].id
-    // search ids using searchGoogleBooks()
-    // return all relevant book data
-    res.send(result.data);
+    const result = await db(`SELECT * FROM mylibrary`);
+    const items = result.data;
+    for (let item of items) {
+      searchGoogleBooks(result.data.items[item].id);
+    }
+    res.send(data);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -54,7 +67,7 @@ router.get("/mylibrary", async (req, res) => {
 });
 
 // GET TITLE BASED ON SEARCH -- from Google Books API
-router.get("/mylibrary/:searchTerm", async (req, res) => {
+router.get("/mylibrary/search", async (req, res) => {
   try {
     searchGoogleBooks(req, res); //function written line 14
   } catch (err) {
@@ -77,8 +90,8 @@ router.get("/mylibrary/:id", async (req, res) => {
 // ADD ITEMS TO LIBRARY -- Seems to be working in Postman -- only title, author, description, though.
 // Need to revise this if simplifying database, this works with all info in database
 router.post("/mylibrary", async (req, res) => {
-  const { title, author, description } = req.body;
-  const sql = `INSERT INTO mylibrary (title, author, description) VALUES ("${title}", "${author}", "${description}")`;
+  const { id } = req.body;
+  const sql = `INSERT INTO mylibrary (id) VALUES ("${id}")`;
 
   try {
     await db(sql);
