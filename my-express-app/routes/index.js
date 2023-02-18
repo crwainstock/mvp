@@ -47,10 +47,10 @@ const getItems = async (req, res) => {
   try {
     const result = await db(`SELECT * FROM mylibrary`);
     const items = result.data;
-    for (let item of items) {
-      searchGoogleBooks(result.data.items[item].id);
-    }
-    res.send(data);
+    // for (let item of items) {
+    //   searchGoogleBooks(result.data.items[item].id);
+    // }
+    res.send(items);
   } catch (err) {
     res.status(500).send(err.message);
   }
