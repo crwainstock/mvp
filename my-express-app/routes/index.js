@@ -89,8 +89,8 @@ router.get("/mylibrary/:id", async (req, res) => {
 
 // ADD ITEMS TO LIBRARY -- seems to work in postman. not sure if it's complete, though.
 router.post("/mylibrary", async (req, res) => {
-  const { id } = req.body;
-  const sql = `INSERT INTO mylibrary (id) VALUES ("${id}")`;
+  const { bookId } = req.body;
+  const sql = `INSERT INTO mylibrary (bookId) VALUES ("${bookId}")`;
 
   try {
     await db(sql);
