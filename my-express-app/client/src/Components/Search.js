@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import "./search.css";
 
-function Search() {
+function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState(""); //Do I need this? For the input?
   const [searchResults, setSearchResults] = useState([]);
 
+  //Function to use Google Books API and search titles -- GET function in index.js uses API and searches titles with searchTerm in body
   const searchBooks = async (searchTerm) => {
     let options = {
       method: "GET",
@@ -26,6 +27,7 @@ function Search() {
 
   const handleSubmit = () => {
     searchBooks(searchTerm);
+    searchResultsCB(searchResults); //Trying to pass data to parent here.
     return searchResults;
   };
 
@@ -39,9 +41,6 @@ function Search() {
             onChange={(e) => setSearchTerm(e.target.value)}
           ></input>
         </form>
-      </div>
-      <div id="searchResults">
-        {searchResults ? <div>{searchResults.items[0].title}</div> : null}
       </div>
     </div>
   );

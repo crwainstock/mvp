@@ -20,11 +20,15 @@ function App() {
     }
   };
 
+  const handleSearch = () => {
+    //idk know what I need here.
+  };
+
   return (
     <div className="App">
       <h1>Let's get this started!</h1>
       <div>{books}</div>
-      <Search />
+      <Search searchResultsCB={handleSearch} />
     </div>
   );
 }
