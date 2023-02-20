@@ -18,7 +18,8 @@ function Search({ searchResultsCB }) {
     try {
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
-      setSearchResults([data]);
+      console.log(data);
+      setSearchResults([data]); // searchResults = array of data
       console.log(searchResults); //returning empty array
     } catch (err) {
       console.log(err);
@@ -46,11 +47,11 @@ function Search({ searchResultsCB }) {
         </form>
       </div>
       <div id="searchResults">
-        {searchResults.map((result) => (
+        {/* {searchResults.map((result) => (
           <div id="result" key={result.items.id}>
             <p>{result.items.volumeInfo.title}</p>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
