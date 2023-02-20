@@ -24,15 +24,25 @@ function Search() {
     }
   };
 
+  const handleSubmit = () => {
+    searchBooks(searchTerm);
+    return searchResults;
+  };
+
   return (
     <div className="app">
-      <form onSubmit={searchBooks}>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        ></input>
-      </form>
+      <div id="searchBox">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          ></input>
+        </form>
+      </div>
+      <div id="searchResults">
+        {searchResults ? <div>{searchResults.items[0].title}</div> : null}
+      </div>
     </div>
   );
 }
