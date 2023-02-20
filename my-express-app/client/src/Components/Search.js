@@ -46,7 +46,11 @@ function Search({ searchResultsCB }) {
         </form>
       </div>
       <div id="searchResults">
-        {searchResults ? <div id="result">{searchResults.items}</div> : null}
+        {searchResults.map((result) => (
+          <div id="result" key={result.items.id}>
+            <p>{result.items.volumeInfo.title}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
