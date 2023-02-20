@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Search from "./Components/Search";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
   return (
     <div className="App">
       <h1>Let's get this started!</h1>
+      <div>{books}</div>
+      <Search />
     </div>
   );
 }
