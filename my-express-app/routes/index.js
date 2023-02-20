@@ -67,7 +67,7 @@ router.get("/mylibrary", async (req, res) => {
 });
 
 // GET TITLE BASED ON SEARCH -- from Google Books API
-router.get("/mylibrary/search", async (req, res) => {
+router.post("/mylibrary/search", async (req, res) => {
   try {
     searchGoogleBooks(req, res); //function written line 14
   } catch (err) {

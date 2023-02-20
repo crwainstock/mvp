@@ -9,7 +9,7 @@ function Search({ searchResultsCB }) {
   //Function to use Google Books API and search titles -- GET function in index.js uses API and searches titles with searchTerm in body
   const searchBooks = async (searchTerm) => {
     let options = {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -25,9 +25,11 @@ function Search({ searchResultsCB }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     searchBooks(searchTerm);
     searchResultsCB(searchResults); //Trying to pass data to parent here.
+    setSearchTerm("");
     return searchResults;
   };
 

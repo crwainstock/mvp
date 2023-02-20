@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <h1>Let's get this started!</h1>
-      <div>{books}</div>
+      <div></div>
       <Search searchResultsCB={handleSearch} />
     </div>
   );
