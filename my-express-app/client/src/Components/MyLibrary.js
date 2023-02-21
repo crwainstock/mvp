@@ -23,7 +23,7 @@ function MyLibrary() {
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
 
-      setBooks(...data.items); //Should return all data from Google API for myLibrary books
+      setBooks(data.items); //Should return all data from Google API for myLibrary books
     } catch (err) {
       console.log(err);
     }
@@ -33,10 +33,12 @@ function MyLibrary() {
     try {
       let results = await fetch("/mylibrary");
       let data = await results.json();
-      let bookId = data.bookId;
+      //   let bookId = data.bookId;
       for (let i = 0; i < data.length; i++) {
-        searchMyBooks(bookId);
+        console.log(data[i].bookId); //Seems to be accessing the bookId here
+        searchMyBooks(data[i].bookId);
       }
+      //   console.log(data);
       setBooks(data);
       console.log(books); //search results for "undefined" 😅
     } catch (err) {
