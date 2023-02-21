@@ -15,12 +15,19 @@ const searchGoogleBooks = async (req, res) => {
   try {
     const { searchTerm } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=5`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=en&maxResults=5`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);
     } else {
       let data = await result.json();
+      //Loop through data
+      //If item category isn't "juvenile fiction", remove it from the list
+      // for (let i = 0; i < data.items.length; i++) {
+      //   if (data.items.volumeInfo.categories !== "Juvenile Fiction") {
+      //     data.items.splice(i, 1);
+      //   }
+      // }
       res.send(data);
     }
   } catch (err) {
