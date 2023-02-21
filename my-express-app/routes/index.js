@@ -15,7 +15,7 @@ const searchGoogleBooks = async (req, res) => {
   try {
     const { searchTerm } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=5`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);

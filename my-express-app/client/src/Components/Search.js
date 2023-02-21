@@ -52,6 +52,8 @@ function Search({ searchResultsCB }) {
           {searchResults.map((result) => (
             <div className="col" id="result" key={result.id}>
               <p>{result.volumeInfo.title}</p>
+              <p>{result.volumeInfo.authors}</p>
+              {/* <img src={result.volumeInfo.imageLinks.thumbnail} /> */}
             </div>
           ))}
         </div>
