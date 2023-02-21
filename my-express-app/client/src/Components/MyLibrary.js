@@ -9,7 +9,8 @@ function MyLibrary() {
     fetchBooks();
     console.log(books);
   }, []);
-
+  //I'm trying to use this function to take the bookId from the database and search the Google API, returning all the book data to render in the front end
+  //So far, it seems like it's accessing Google, but it's searching "undefined" instead of the bookId :)
   const searchMyBooks = async (bookId) => {
     let options = {
       method: "POST",
@@ -27,7 +28,7 @@ function MyLibrary() {
       console.log(err);
     }
   };
-
+  //This function was working on its own before I tried adding the Google API search -- connected to database
   const fetchBooks = async () => {
     try {
       let results = await fetch("/mylibrary");
