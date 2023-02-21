@@ -6,6 +6,13 @@ function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  const getJuvenileBooks = (books) => {
+    const juvenileBooks = books.filter((book) => {
+      return book.volumeInfo.categories[0] === "Juvenile Fiction";
+    });
+    setSearchResults(juvenileBooks);
+  };
+
   //Function to use Google Books API and search titles -- POST function in index.js uses API and searches titles with searchTerm in body
   const searchBooks = async (searchTerm) => {
     let options = {
@@ -18,16 +25,7 @@ function Search({ searchResultsCB }) {
     try {
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
-      //Loop through data
-      //If item category isn't "juvenile fiction", remove it from the list
-      for (let i = 0; i < data.items.length; i++) {
-        if (data.items.volumeInfo.categories !== ["Juvenile Fiction"]) {
-          data.items.splice(i, 1);
-        }
-      }
-
-      console.log(data); // object with data
-      setSearchResults(data.items); // searchResults = array of data
+      getJuvenileBooks(data.items);
       console.log(searchResults); //returning array of objects
     } catch (err) {
       console.log(err);
