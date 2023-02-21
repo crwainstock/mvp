@@ -18,9 +18,9 @@ function Search({ searchResultsCB }) {
     try {
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
-      console.log(data);
-      setSearchResults([data]); // searchResults = array of data
-      console.log(searchResults); //returning empty array
+      console.log(data); // object with data
+      setSearchResults(data.items); // searchResults = array of data
+      console.log(searchResults); //returning array of objects
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +31,7 @@ function Search({ searchResultsCB }) {
     searchBooks(searchTerm);
     searchResultsCB(searchResults); //Trying to pass data to parent here.
     setSearchTerm("");
-    console.log(searchResults); //returning empty array
+    // console.log(searchResults); //returning array of objects
     return searchResults;
   };
 
@@ -41,17 +41,20 @@ function Search({ searchResultsCB }) {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
+            placeholder="Type book title or author name here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           ></input>
         </form>
       </div>
-      <div id="searchResults">
-        {/* {searchResults.map((result) => (
-          <div id="result" key={result.items.id}>
-            <p>{result.items.volumeInfo.title}</p>
-          </div>
-        ))} */}
+      <div className="container">
+        <div id="searchResults" className="row">
+          {searchResults.map((result) => (
+            <div className="col" id="result" key={result.id}>
+              <p>{result.volumeInfo.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
