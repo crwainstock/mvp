@@ -60,11 +60,11 @@ function Search({ searchResultsCB }) {
           ></input>
         </form>
       </div>
-      <div className="container">
-        <div id="searchResults" className="row">
+      <div id="searchResults" className="container">
+        <div className="row">
           {searchResults.map((result) => (
             <div className="col" id="result" key={result.id}>
-              {/* <img src={result.volumeInfo.imageLinks.thumbnail} /> */}
+              <img src={result.volumeInfo.imageLinks.thumbnail} />
               <p>{result.volumeInfo.title}</p>
               <p>{result.volumeInfo.authors}</p>
               <p>{result.volumeInfo.description}</p>

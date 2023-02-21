@@ -19,6 +19,13 @@ function MyLibrary() {
       console.log(err);
     }
   };
+
+  return (
+    <div className="container">
+      <h2>My Library</h2>
+      {}
+    </div>
+  );
 }
 
 export default MyLibrary;
