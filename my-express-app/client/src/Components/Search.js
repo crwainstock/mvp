@@ -37,10 +37,14 @@ function Search({ searchResultsCB }) {
 
   return (
     <div className="app">
-      <div id="searchBox">
+      <div id="searchBox" className="mb-3">
         <form onSubmit={handleSubmit}>
+          <label htmlfor="search" class="form-label">
+            Search for a book
+          </label>
           <input
             type="text"
+            className="form-control"
             placeholder="Type book title or author name here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
