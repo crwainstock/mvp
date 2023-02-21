@@ -8,7 +8,10 @@ function Search({ searchResultsCB }) {
 
   const getJuvenileBooks = (books) => {
     const juvenileBooks = books.filter((book) => {
-      return book.volumeInfo.categories[0] === "Juvenile Fiction";
+      return (
+        book.volumeInfo.categories?.[0] === "Juvenile Fiction" ||
+        book.volumeInfo.categories?.[0] === "Juvenile Nonfiction"
+      );
     });
     setSearchResults(juvenileBooks);
   };
