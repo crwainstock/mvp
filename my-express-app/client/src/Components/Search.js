@@ -54,7 +54,7 @@ function Search({ searchResultsCB }) {
           <input
             type="text"
             className="form-control"
-            placeholder="Type book title or author name here"
+            placeholder="Type the name of a children's book here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           ></input>
@@ -70,10 +70,10 @@ function Search({ searchResultsCB }) {
               <p>{result.volumeInfo.description}</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="20"
+                height="20"
                 fill="currentColor"
-                class="bi bi-plus-circle"
+                className="bi bi-plus-circle"
                 viewBox="0 0 16 16"
               >
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

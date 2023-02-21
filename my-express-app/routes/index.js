@@ -21,13 +21,6 @@ const searchGoogleBooks = async (req, res) => {
       setError(`An error has occured: ${response.status}`);
     } else {
       let data = await result.json();
-      //Loop through data
-      //If item category isn't "juvenile fiction", remove it from the list
-      // for (let i = 0; i < data.items.length; i++) {
-      //   if (data.items.volumeInfo.categories !== "Juvenile Fiction") {
-      //     data.items.splice(i, 1);
-      //   }
-      // }
       res.send(data);
     }
   } catch (err) {
