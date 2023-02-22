@@ -13,7 +13,7 @@ function Search({ searchResultsCB }) {
       return (
         book.volumeInfo.categories?.[0] === "Juvenile Fiction" ||
         book.volumeInfo.categories?.[0] === "Juvenile Nonfiction"
-        // book.volumneInfo.categories?.[0] === "Months"
+        // book.volumneInfo.categories?.[0] === "Months" -- Chicken Soup with Rice example
       );
     });
     setSearchResults(juvenileBooks);
@@ -74,7 +74,7 @@ function Search({ searchResultsCB }) {
               id="result"
               key={result.id}
             >
-              <img src={result.volumeInfo.imageLinks.thumbnail} />
+              <img src={result.volumeInfo.imageLinks?.thumbnail} />
               <h5>{result.volumeInfo.title}</h5>
               <p>
                 {result.volumeInfo.authors[0]} {result.volumeInfo.authors[1]}
