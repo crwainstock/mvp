@@ -26,7 +26,7 @@ function MyLibrary() {
       //Something here isn't working -- returning search results for "undefined"
       let myBooksDetails = [];
       myBooksDetails.push(data.items);
-      console.log(myBooksDetails);
+      //   console.log(myBooksDetails);
       return myBooksDetails;
 
       //   setBooks(myBooksDetails); //Should return all data from Google API for myLibrary books
@@ -45,7 +45,7 @@ function MyLibrary() {
       }
 
       setBooks(data);
-      console.log(books); //search results for "undefined" 😅
+      //   console.log(books); //search results for "undefined" 😅
     } catch (err) {
       console.log(err);
     }

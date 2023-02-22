@@ -6,11 +6,14 @@ function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  // I need this to limit results to books for kids,
+  //but it's creating problems with search results (other categories exist that might be relevant)
   const getJuvenileBooks = (books) => {
     const juvenileBooks = books.filter((book) => {
       return (
         book.volumeInfo.categories?.[0] === "Juvenile Fiction" ||
         book.volumeInfo.categories?.[0] === "Juvenile Nonfiction"
+        // book.volumneInfo.categories?.[0] === "Months"
       );
     });
     setSearchResults(juvenileBooks);
@@ -28,6 +31,7 @@ function Search({ searchResultsCB }) {
     try {
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
+      // console.log(data.items);
       getJuvenileBooks(data.items);
       console.log(searchResults); //returning array of objects
     } catch (err) {
