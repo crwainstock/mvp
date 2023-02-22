@@ -45,11 +45,11 @@ function Search({ searchResultsCB }) {
   };
 
   return (
-    <div className="app">
+    <div id="searchArea" className="container">
       <div id="searchBox" className="mb-3">
         <form onSubmit={handleSubmit}>
           <label htmlFor="search" className="form-label">
-            Search for a book
+            <h3>Search for a book</h3>
           </label>
           <input
             type="text"
@@ -63,7 +63,11 @@ function Search({ searchResultsCB }) {
       <div id="searchResults" className="container">
         <div className="row">
           {searchResults.map((result) => (
-            <div className="col" id="result" key={result.id}>
+            <div
+              className="col-lg-4 col-md-6 col-12"
+              id="result"
+              key={result.id}
+            >
               <img src={result.volumeInfo.imageLinks.thumbnail} />
               <p>{result.volumeInfo.title}</p>
               <p>{result.volumeInfo.authors}</p>

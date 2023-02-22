@@ -3,14 +3,23 @@
   width: 50%;
 }
 
-.col {
+/* .col {
   flex: none;
   width: 33.33%;
+} */
+
+h3 {
+  font-family: "Mynerve", cursive;
 }
+
 #result img {
   margin: 1rem;
 }
 #searchResults {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+#searchArea {
+  margin-top: 2rem;
 }
