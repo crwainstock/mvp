@@ -25,8 +25,6 @@ function MyLibrary() {
       let data = await results.json();
 
       setBooks([...books, data.items]);
-      console.log(books); //RETURNING SEARCH RESULTS FOR "UNDEFINED"
-      return books;
     } catch (err) {
       console.log(err);
     }
@@ -41,9 +39,9 @@ function MyLibrary() {
       //Should return full book data from Google & set books as that data
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
-        await searchMyBooks(data[i].bookId); //The problem is in this function. -- Trying to use results from fetch to search Google
+        await searchMyBooks(data[i].bookId);
       }
-      console.log(books);
+      console.log(books); //Returning one book entry from the database, yay! And also "undefined"...not sure why
       return books;
     } catch (err) {
       console.log(err);
@@ -51,8 +49,19 @@ function MyLibrary() {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-2 mb-4">
       <h2>My Library</h2>
+      <div id="myLibraryArea" className="row">
+        {books.map((book) => {
+          <div
+            className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
+            id="book"
+            key={book.id}
+          >
+            <p>{book.volumeInfo?.title}</p>
+          </div>;
+        })}
+      </div>
     </div>
   );
 }
