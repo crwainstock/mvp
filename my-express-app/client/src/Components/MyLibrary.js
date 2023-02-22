@@ -17,15 +17,16 @@ function MyLibrary() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ bookId: bookId }),
+      body: JSON.stringify({ searchTerm: bookId }),
     };
     try {
       //Search
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
 
-      setBooks([...books, data.items[0]]);
+      setBooks([...books, data.items]);
       console.log(books); //RETURNING SEARCH RESULTS FOR "UNDEFINED"
+      return books;
     } catch (err) {
       console.log(err);
     }
@@ -42,9 +43,8 @@ function MyLibrary() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooks(data[i].bookId); //The problem is in this function. -- Trying to use results from fetch to search Google
       }
-
-      //   setBooks(data);
-      //   console.log(books); //search results for "undefined" 😅
+      console.log(books);
+      return books;
     } catch (err) {
       console.log(err);
     }
