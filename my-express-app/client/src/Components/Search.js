@@ -62,17 +62,19 @@ function Search({ searchResultsCB }) {
           </form>
         </div>
       </div>
-      <div id="searchResults" className="container mt-2 mb-2">
+      <div id="searchResults" className="container mt-2 mb-4">
         <div className="row">
           {searchResults.map((result) => (
             <div
-              className="col-lg-4 col-md-6 col-12"
+              className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
               id="result"
               key={result.id}
             >
               <img src={result.volumeInfo.imageLinks.thumbnail} />
-              <p>{result.volumeInfo.title}</p>
-              <p>{result.volumeInfo.authors}</p>
+              <h5>{result.volumeInfo.title}</h5>
+              <p>
+                {result.volumeInfo.authors[0]} {result.volumeInfo.authors[1]}
+              </p>
               <p>{result.volumeInfo.description}</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
