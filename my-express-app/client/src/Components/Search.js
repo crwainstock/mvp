@@ -45,22 +45,24 @@ function Search({ searchResultsCB }) {
   };
 
   return (
-    <div id="searchArea" className="container">
-      <div id="searchBox" className="mb-3">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="search" className="form-label">
-            <h3>Search for a book</h3>
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Type the name of a children's book here"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          ></input>
-        </form>
+    <div id="searchArea" className="container mt-4">
+      <div className="row">
+        <div id="searchBox" className="offset-md-3 col-md-6 mb-3">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="search" className="form-label">
+              <h3>Search for a book</h3>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Type the name of a children's book here"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            ></input>
+          </form>
+        </div>
       </div>
-      <div id="searchResults" className="container">
+      <div id="searchResults" className="container mt-2 mb-2">
         <div className="row">
           {searchResults.map((result) => (
             <div
