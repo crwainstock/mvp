@@ -9,8 +9,9 @@ function MyLibrary() {
     fetchBooks();
     console.log(books);
   }, []);
+
   //I'm trying to use this function to take the bookId from the database and search the Google API, returning all the book data to render in the front end
-  //So far, it seems like it's accessing Google, but it's searching "undefined" instead of the bookId :)
+
   const searchMyBooks = async (bookId) => {
     let options = {
       method: "POST",
@@ -20,11 +21,11 @@ function MyLibrary() {
       body: JSON.stringify({ searchTerm: bookId }),
     };
     try {
-      //Search
+      //Search Google using bookId from database
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
-
-      setBooks([...books, data.items]);
+      let bookDetails = [...books, data.items]; //Add each iteration to the array
+      setBooks(bookDetails); //Save all book details to books array
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +40,7 @@ function MyLibrary() {
       //Should return full book data from Google & set books as that data
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
-        await searchMyBooks(data[i].bookId);
+        await searchMyBooks(data[i].bookId); //Use search function to look up book details using bookId
       }
       console.log(books); //Returning one book entry from the database, yay! And also "undefined"...not sure why
       return books;
