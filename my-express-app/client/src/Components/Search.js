@@ -135,7 +135,8 @@ function Search({ searchResultsCB }) {
               <img src={result.volumeInfo.imageLinks?.thumbnail} />
               <h5>{result.volumeInfo.title}</h5>
               <p>
-                {result.volumeInfo.authors[0]} {result.volumeInfo.authors[1]}
+                {result.volumeInfo.authors?.[0]}{" "}
+                {result.volumeInfo.authors?.[1]}
               </p>
               <p>{result.volumeInfo.description}</p>
               <svg
