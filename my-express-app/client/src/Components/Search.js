@@ -44,6 +44,7 @@ function Search({ searchResultsCB }) {
     searchBooks(searchTerm);
     searchResultsCB(searchResults); //Trying to pass data to parent here.
     setSearchTerm("");
+    setSelected(true);
     // console.log(searchResults); //returning array of objects
     return searchResults;
   };

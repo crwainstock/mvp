@@ -28,8 +28,8 @@ const searchGoogleById = async (req, res) => {
   }
 };
 
-// Used for FE search input
-const searchGoogleBooks = async (req, res) => {
+// Used for FE search input BY TITLE
+const searchGoogleBooksByTitle = async (req, res) => {
   try {
     const { searchTerm } = req.body;
     const result = await fetch(
@@ -46,20 +46,23 @@ const searchGoogleBooks = async (req, res) => {
   }
 };
 
-//Get all items in library
-// const getItems = async (req, res) => {
-//   try {
-//     const result = await db("SELECT * FROM mylibrary");
-//     // To get items in database if they're saved with Google Books API data id:
-//     // loop through data and grab ids
-//     // ids in Google Books API data = result.data.items[0].id
-//     // search ids using searchGoogleBooks()
-//     // return all relevant book data
-//     res.send(result.data);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
+// Used for FE search input BY AUTHOR
+const searchGoogleBooksByAuthor = async (req, res) => {
+  try {
+    const { searchTerm } = req.body;
+    const result = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}`
+    );
+    if (!result.ok) {
+      setError(`An error has occured: ${response.status}`);
+    } else {
+      let data = await result.json();
+      res.send(data);
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 
 const getItems = async (req, res) => {
   try {
@@ -84,10 +87,19 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH -- from Google Books API -- Used in Search component, search field
-router.post("/mylibrary/search", async (req, res) => {
+// GET TITLE BASED ON SEARCH BY TITLE -- from Google Books API -- Used in Search component, search field
+router.post("/mylibrary/searchByTitle", async (req, res) => {
   try {
-    searchGoogleBooks(req, res); //function written line 32
+    searchGoogleBooksByTitle(req, res); //function written line 32
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// GET TITLE BASED ON SEARCH BY AUTHOR -- from Google Books API -- Used in Search component, search field
+router.post("/mylibrary/searchByAuthor", async (req, res) => {
+  try {
+    searchGoogleBooksByAuthor(req, res); //function written line 32
   } catch (err) {
     res.status(500).send(err);
   }
