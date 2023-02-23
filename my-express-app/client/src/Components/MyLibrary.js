@@ -42,7 +42,7 @@ function MyLibrary() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooks(data[i].bookId); //Use search function to look up book details using bookId
       }
-      //   console.log(books); //Returning one book entry from the database, yay! And also "undefined"...not sure why
+      console.log(books); //Returning one book entry from the database, yay! And also "undefined"...not sure why
       return books;
     } catch (err) {
       console.log(err);
