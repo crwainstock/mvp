@@ -10,12 +10,30 @@ router.get("/", function (req, res, next) {
   res.send("Welcome to My Library API"); //This is returning something else? The index.html in the public folder for Express
 });
 
-// This is working in Postman now, yay!
+// Used for FE search with bookId from database -- in MyLibrary component, searchMyBooks function
+const searchGoogleById = async (req, res) => {
+  try {
+    const { bookId } = req.body;
+    const result = await fetch(
+      `https://www.googleapis.com/books/v1/volumes/${bookId}`
+    );
+    if (!result.ok) {
+      setError(`An error has occured: ${response.status}`);
+    } else {
+      let data = await result.json();
+      res.send(data);
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+// Used for FE search input
 const searchGoogleBooks = async (req, res) => {
   try {
     const { searchTerm } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q="${searchTerm}"&langRestrict=en&maxResults=40`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=en&maxResults=40`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);
@@ -66,10 +84,19 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH -- from Google Books API
+// GET TITLE BASED ON SEARCH -- from Google Books API -- Used in Search component, search field
 router.post("/mylibrary/search", async (req, res) => {
   try {
-    searchGoogleBooks(req, res); //function written line 14
+    searchGoogleBooks(req, res); //function written line 32
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// GET DETAILS BASED ON ID SEARCH -- Used in MyLibrary component
+router.post("/mylibrary/search/id", async (req, res) => {
+  try {
+    searchGoogleById(req, res); //function written line 14
   } catch (err) {
     res.status(500).send(err);
   }

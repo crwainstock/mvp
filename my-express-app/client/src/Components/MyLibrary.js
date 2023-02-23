@@ -51,16 +51,20 @@ function MyLibrary() {
   };
 
   return (
-    <div className="container mt-2 mb-4">
+    <div className="container mt-4 mb-4">
       <h2>My Library</h2>
-      <div id="myLibraryArea" className="row">
+      <div id="myLibraryArea" className="row mt-4">
         {books.map((book) => (
           <div
             className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
             id="book"
             key={book.id}
           >
-            <p>{book.volumeInfo.title}</p>
+            <h5>{book.volumeInfo.title}</h5>
+            <p>
+              {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
+            </p>
+            <img src={book.volumeInfo.imageLinks?.thumbnail} />
           </div>
         ))}
       </div>
