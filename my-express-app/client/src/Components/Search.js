@@ -69,7 +69,6 @@ function Search({ searchResultsCB }) {
     // searchBooks(searchTerm); NEED TO REVISE WITH IF STATEMENT BASED ON SELECTED STATE VARIABLE
     searchResultsCB(searchResults); //Trying to pass data to parent here.
     setSearchTerm("");
-    setSelected(true);
     // console.log(searchResults); //returning array of objects
     return searchResults;
   };

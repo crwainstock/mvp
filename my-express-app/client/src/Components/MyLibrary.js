@@ -12,7 +12,7 @@ function MyLibrary() {
 
   //I'm trying to use this function to take the bookId from the database and search the Google API, returning all the book data to render in the front end
 
-  const searchMyBooks = async (bookId) => {
+  const searchMyBooksById = async (bookId) => {
     let options = {
       method: "POST",
       headers: {
@@ -25,7 +25,7 @@ function MyLibrary() {
       let results = await fetch(`/mylibrary/search/id`, options);
       let data = await results.json();
 
-      setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
+      // setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
       // console.log(books);
     } catch (err) {
       console.log(err);
@@ -41,7 +41,7 @@ function MyLibrary() {
       //Should return full book data from Google & set books as that data
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
-        await searchMyBooks(data[i].bookId); //Use search function to look up book details using bookId
+        await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
 
       return books;
