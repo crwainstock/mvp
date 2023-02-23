@@ -22,16 +22,17 @@ function MyLibrary() {
     };
     try {
       //Search Google using bookId from database
-      let results = await fetch(`/mylibrary/search/id`, options);
+      let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
+      console.log(data); //Search is working, but rendering is not.
 
-      setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
+      setBooks((book) => [...book, data.items[0]]); // ERROR HAPPENING HERE -- CAN'T READ 0...???
       // console.log(books);
     } catch (err) {
       console.log(err);
     }
   };
-  //This function was working on its own before I tried adding the Google API search -- connected to database
+  // This function gets books FROM DATABASE and loops through them, using the bookId to search the GOOGLE BOOKS API and return all book data
   const fetchBooks = async () => {
     try {
       //Get books from database
@@ -43,7 +44,7 @@ function MyLibrary() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
-
+      console.log(books);
       return books;
     } catch (err) {
       console.log(err);

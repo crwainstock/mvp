@@ -103,7 +103,7 @@ router.post("/mylibrary/searchByAuthor", async (req, res) => {
 });
 
 // GET DETAILS BASED ON ID SEARCH -- Used in MyLibrary component -- FROM GOOGLE BOOKS API
-router.post("/mylibrary/search/id", async (req, res) => {
+router.post("/mylibrary/searchById", async (req, res) => {
   try {
     searchGoogleById(req, res); //function written line 14
   } catch (err) {
