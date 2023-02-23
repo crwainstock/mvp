@@ -26,7 +26,7 @@ function MyLibrary() {
       let data = await results.json();
       console.log(data); //Search is working, but rendering is not. -- individual objects with book details
 
-      setBooks((book) => [...book, data[0]]); // ERROR HAPPENING HERE -- CAN'T READ 0...???
+      setBooks((book) => [...book, data]); // Adding object of data to books array
       console.log(books);
     } catch (err) {
       console.log(err);
@@ -55,7 +55,7 @@ function MyLibrary() {
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
       <div id="myLibraryArea" className="row mt-4">
-        {/* {books.map((book) => (
+        {books.map((book) => (
           <div
             className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
             id="book"
@@ -67,7 +67,7 @@ function MyLibrary() {
             </p>
             <img src={book.volumeInfo.imageLinks?.thumbnail} />
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );
