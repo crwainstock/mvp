@@ -19,17 +19,37 @@ function Search({ searchResultsCB }) {
     setSearchResults(juvenileBooks);
   };
 
-  //Function to use Google Books API and search titles -- POST function in index.js uses API and searches titles with searchTerm in body
-  const searchBooks = async (searchTerm) => {
+  //Function to use Google Books API and search BY TITLES -- POST function in index.js uses API and searches titles with searchTerm in body
+  const searchBooksByTitle = async (searchTerm) => {
     let options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ searchTerm: searchTerm }),
+      body: JSON.stringify({ title: searchTerm }),
     };
     try {
-      let results = await fetch(`/mylibrary/search`, options);
+      let results = await fetch(`/mylibrary/searchByTitle`, options);
+      let data = await results.json();
+      // console.log(data.items);
+      getJuvenileBooks(data.items);
+      console.log(searchResults); //returning array of objects
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //Function to use Google Books API and search BY TITLES -- POST function in index.js uses API and searches titles with searchTerm in body
+  const searchBooksByAuthor = async (searchTerm) => {
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ author: searchTerm }),
+    };
+    try {
+      let results = await fetch(`/mylibrary/searchByAuthor`, options);
       let data = await results.json();
       // console.log(data.items);
       getJuvenileBooks(data.items);
@@ -41,7 +61,12 @@ function Search({ searchResultsCB }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchBooks(searchTerm);
+    if (selected === true) {
+      searchBooksByTitle(searchTerm);
+    } else if (selected === false) {
+      searchBooksByAuthor(searchTerm);
+    }
+    // searchBooks(searchTerm); NEED TO REVISE WITH IF STATEMENT BASED ON SELECTED STATE VARIABLE
     searchResultsCB(searchResults); //Trying to pass data to parent here.
     setSearchTerm("");
     setSelected(true);

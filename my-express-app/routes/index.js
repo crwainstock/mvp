@@ -13,9 +13,9 @@ router.get("/", function (req, res, next) {
 // Used for FE search with bookId from database -- in MyLibrary component, searchMyBooks function
 const searchGoogleById = async (req, res) => {
   try {
-    const { bookId } = req.body;
+    const { id } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${bookId}`
+      `https://www.googleapis.com/books/v1/volumes/${id}`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);
@@ -31,9 +31,9 @@ const searchGoogleById = async (req, res) => {
 // Used for FE search input BY TITLE
 const searchGoogleBooksByTitle = async (req, res) => {
   try {
-    const { searchTerm } = req.body;
+    const { title } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);
@@ -49,9 +49,9 @@ const searchGoogleBooksByTitle = async (req, res) => {
 // Used for FE search input BY AUTHOR
 const searchGoogleBooksByAuthor = async (req, res) => {
   try {
-    const { searchTerm } = req.body;
+    const { author } = req.body;
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`
     );
     if (!result.ok) {
       setError(`An error has occured: ${response.status}`);

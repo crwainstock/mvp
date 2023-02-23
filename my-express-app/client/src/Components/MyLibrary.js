@@ -18,11 +18,11 @@ function MyLibrary() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ searchTerm: bookId }),
+      body: JSON.stringify({ id: bookId }),
     };
     try {
       //Search Google using bookId from database
-      let results = await fetch(`/mylibrary/search`, options);
+      let results = await fetch(`/mylibrary/search/id`, options);
       let data = await results.json();
 
       setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
