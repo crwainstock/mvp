@@ -24,8 +24,9 @@ function MyLibrary() {
       //Search Google using bookId from database
       let results = await fetch(`/mylibrary/search`, options);
       let data = await results.json();
-      //   let bookDetails = [...books, data.items]; //Add each iteration to the array -- is this working?
-      setBooks((book) => [...book, data.items]); //Save all book details to books array
+
+      setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
+      console.log(books);
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +43,7 @@ function MyLibrary() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooks(data[i].bookId); //Use search function to look up book details using bookId
       }
-      console.log(books); //Returning one book entry from the database, yay! And also "undefined"...not sure why
+
       return books;
     } catch (err) {
       console.log(err);
@@ -59,7 +60,7 @@ function MyLibrary() {
             id="book"
             key={book.id}
           >
-            <p>{book.volumeInfo?.title}</p>
+            <p>{book.volumeInfo.title}</p>
           </div>;
         })}
       </div>
