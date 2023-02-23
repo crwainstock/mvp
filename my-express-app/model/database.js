@@ -17,15 +17,17 @@ const con = mysql.createConnection({
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
-
-  let sql =
-    "DROP TABLE if exists items; CREATE TABLE items(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
+  let sql = `DROP TABLE if exists MyLibrary; CREATE TABLE MyLibrary (
+     id int NOT NULL AUTO_INCREMENT,
+     bookId varchar(40),
+     rating int,
+     review varchar(255),
+      PRIMARY KEY (id)
+  );`;
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Table creation `items` was successful!");
-
+    console.log("Table creation `MyLibrary` was successful!");
     console.log("Closing...");
   });
-
   con.end();
 });

@@ -54,10 +54,10 @@ function MyLibrary() {
   return (
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
-      <div id="myLibraryArea" className="row mt-4">
+      <div id="myLibraryArea" className="row mt-2">
         {books.map((book) => (
           <div
-            className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
+            className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
             id="book"
             key={book.id}
           >
