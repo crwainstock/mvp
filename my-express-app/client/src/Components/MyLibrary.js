@@ -24,10 +24,10 @@ function MyLibrary() {
       //Search Google using bookId from database
       let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
-      console.log(data); //Search is working, but rendering is not.
+      console.log(data); //Search is working, but rendering is not. -- individual objects with book details
 
-      setBooks((book) => [...book, data.items[0]]); // ERROR HAPPENING HERE -- CAN'T READ 0...???
-      // console.log(books);
+      setBooks((book) => [...book, data[0]]); // ERROR HAPPENING HERE -- CAN'T READ 0...???
+      console.log(books);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +44,7 @@ function MyLibrary() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
-      console.log(books);
+      // console.log(books);
       return books;
     } catch (err) {
       console.log(err);
@@ -55,7 +55,7 @@ function MyLibrary() {
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
       <div id="myLibraryArea" className="row mt-4">
-        {books.map((book) => (
+        {/* {books.map((book) => (
           <div
             className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
             id="book"
@@ -67,7 +67,7 @@ function MyLibrary() {
             </p>
             <img src={book.volumeInfo.imageLinks?.thumbnail} />
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
