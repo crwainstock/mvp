@@ -68,16 +68,13 @@ const getItems = async (req, res) => {
   try {
     const result = await db(`SELECT * FROM mylibrary`);
     const items = result.data;
-    // for (let item of items) {
-    //   searchGoogleBooks(result.data.items[item].id);
-    // }
     res.send(items);
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
 
-// GET ALL LIBRARY ITEMS -- Seems to be working.
+// GET ALL LIBRARY ITEMS -- FROM DATABASE
 router.get("/mylibrary", async (req, res) => {
   try {
     let results = await db(`SELECT * FROM mylibrary;`);
@@ -87,7 +84,7 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH BY TITLE -- from Google Books API -- Used in Search component, search field
+// GET TITLE BASED ON SEARCH BY TITLE -- Used in Search component, search field -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/searchByTitle", async (req, res) => {
   try {
     searchGoogleBooksByTitle(req, res); //function written line 32
@@ -96,16 +93,16 @@ router.post("/mylibrary/searchByTitle", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH BY AUTHOR -- from Google Books API -- Used in Search component, search field
+// GET TITLE BASED ON SEARCH BY AUTHOR -- Used in Search component, search field -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/searchByAuthor", async (req, res) => {
   try {
-    searchGoogleBooksByAuthor(req, res); //function written line 32
+    searchGoogleBooksByAuthor(req, res); //function written line 50
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
-// GET DETAILS BASED ON ID SEARCH -- Used in MyLibrary component
+// GET DETAILS BASED ON ID SEARCH -- Used in MyLibrary component -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/search/id", async (req, res) => {
   try {
     searchGoogleById(req, res); //function written line 14
@@ -114,7 +111,7 @@ router.post("/mylibrary/search/id", async (req, res) => {
   }
 });
 
-//GET ITEM BY ID -- Seems to be working.
+//GET ITEM BY ID -- Seems to be working. -- FROM DATABASE
 router.get("/mylibrary/:id", async (req, res) => {
   try {
     let results = await db(

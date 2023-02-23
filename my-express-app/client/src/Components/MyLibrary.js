@@ -25,7 +25,7 @@ function MyLibrary() {
       let results = await fetch(`/mylibrary/search/id`, options);
       let data = await results.json();
 
-      // setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
+      setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
       // console.log(books);
     } catch (err) {
       console.log(err);

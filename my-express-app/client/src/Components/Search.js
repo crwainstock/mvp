@@ -4,7 +4,7 @@ import "./search.css";
 
 function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState(true); // State variable for radio buttons -- true = search by title, false = search by author
   const [searchResults, setSearchResults] = useState([]);
 
   // I need this to limit results to books for kids,
@@ -39,7 +39,7 @@ function Search({ searchResultsCB }) {
     }
   };
 
-  //Function to use Google Books API and search BY TITLES -- POST function in index.js uses API and searches titles with searchTerm in body
+  //Function to use Google Books API and search BY AUTHOR -- POST function in index.js uses API and searches AUTHORS with searchTerm in body
   const searchBooksByAuthor = async (searchTerm) => {
     let options = {
       method: "POST",
@@ -61,13 +61,14 @@ function Search({ searchResultsCB }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // If search by title (true) is selected, use title search function
+    // If search by author (false) is selected, use author search function
     if (selected === true) {
       searchBooksByTitle(searchTerm);
     } else if (selected === false) {
       searchBooksByAuthor(searchTerm);
     }
-    // searchBooks(searchTerm); NEED TO REVISE WITH IF STATEMENT BASED ON SELECTED STATE VARIABLE
-    searchResultsCB(searchResults); //Trying to pass data to parent here.
+    searchResultsCB(searchResults); //Trying to pass data to parent here. Will need eventually for Adding books functionality
     setSearchTerm("");
     // console.log(searchResults); //returning array of objects
     return searchResults;
@@ -88,14 +89,14 @@ function Search({ searchResultsCB }) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             ></input>
-            <div className="row">
+            <div className="row mt-3">
               <div className="col form-check">
                 <label>
                   <input
                     type="radio"
                     name="searchFilter"
                     className="form-check-input"
-                    checked={true === selected} //Not sure about this...
+                    checked={true === selected}
                     onChange={(e) => {
                       setSelected(true);
                     }}
@@ -110,7 +111,7 @@ function Search({ searchResultsCB }) {
                     type="radio"
                     name="searchFilter"
                     className="form-check-input"
-                    checked={false === selected} //Not sure about this...
+                    checked={false === selected}
                     onChange={(e) => {
                       setSelected(false);
                     }}
@@ -120,7 +121,6 @@ function Search({ searchResultsCB }) {
                 </label>
               </div>
             </div>
-            <button className="btn btn-primary">Search</button>
           </form>
         </div>
       </div>
