@@ -26,7 +26,7 @@ function MyLibrary() {
       let data = await results.json();
 
       setBooks((book) => [...book, data.items[0]]); //Save all book details to books array
-      console.log(books);
+      // console.log(books);
     } catch (err) {
       console.log(err);
     }
@@ -54,15 +54,15 @@ function MyLibrary() {
     <div className="container mt-2 mb-4">
       <h2>My Library</h2>
       <div id="myLibraryArea" className="row">
-        {books.map((book) => {
+        {books.map((book) => (
           <div
             className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
             id="book"
             key={book.id}
           >
             <p>{book.volumeInfo.title}</p>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
