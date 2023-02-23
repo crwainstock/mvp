@@ -62,6 +62,31 @@ function Search({ searchResultsCB }) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             ></input>
+            <div className="row">
+              <div className="col form-check">
+                <label>
+                  <input
+                    type="radio"
+                    name="title"
+                    className="form-check-input"
+                    checked={true}
+                    value="titleSearch"
+                  />
+                  Search by Book Title
+                </label>
+              </div>
+              <div className="col form-check">
+                <label>
+                  <input
+                    type="radio"
+                    name="author"
+                    className="form-check-input"
+                    value="authorSearch"
+                  />
+                  Search by Author
+                </label>
+              </div>
+            </div>
           </form>
         </div>
       </div>
