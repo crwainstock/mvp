@@ -4,6 +4,7 @@ import "./search.css";
 
 function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selected, setSelected] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
 
   // I need this to limit results to books for kids,
@@ -67,9 +68,12 @@ function Search({ searchResultsCB }) {
                 <label>
                   <input
                     type="radio"
-                    name="title"
+                    name="searchFilter"
                     className="form-check-input"
-                    checked={true}
+                    checked={true === selected} //Not sure about this...
+                    onChange={(e) => {
+                      setSelected(true);
+                    }}
                     value="titleSearch"
                   />
                   Search by Book Title
@@ -79,14 +83,19 @@ function Search({ searchResultsCB }) {
                 <label>
                   <input
                     type="radio"
-                    name="author"
+                    name="searchFilter"
                     className="form-check-input"
+                    checked={false === selected} //Not sure about this...
+                    onChange={(e) => {
+                      setSelected(false);
+                    }}
                     value="authorSearch"
                   />
                   Search by Author
                 </label>
               </div>
             </div>
+            <button className="btn btn-primary">Search</button>
           </form>
         </div>
       </div>
