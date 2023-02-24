@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./mylibrary.css";
 
-function MyLibrary() {
+function MyLibraryWidget() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -92,4 +92,4 @@ function MyLibrary() {
   );
 }
 
-export default MyLibrary;
+export default MyLibraryWidget;
