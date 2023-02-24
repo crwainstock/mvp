@@ -4,6 +4,7 @@ import "./mylibrary.css";
 
 function MyLibrary() {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchBooks();
@@ -13,6 +14,7 @@ function MyLibrary() {
   //I'm trying to use this function to take the bookId from the database and search the Google API, returning all the book data to render in the front end
 
   const searchMyBooksById = async (bookId) => {
+    setLoading(true);
     let options = {
       method: "POST",
       headers: {
@@ -28,12 +30,14 @@ function MyLibrary() {
 
       setBooks((book) => [...book, data]); // Adding object of data to books array
       console.log(books);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
   // This function gets books FROM DATABASE and loops through them, using the bookId to search the GOOGLE BOOKS API and return all book data
   const fetchBooks = async () => {
+    setLoading(true);
     try {
       //Get books from database
       let results = await fetch("/mylibrary");
@@ -45,6 +49,7 @@ function MyLibrary() {
         await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
       // console.log(books);
+      setLoading(false);
       return books;
     } catch (err) {
       console.log(err);
@@ -54,21 +59,27 @@ function MyLibrary() {
   return (
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
-      <div id="myLibraryArea" className="row mt-2">
-        {books.map((book) => (
-          <div
-            className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
-            id="book"
-            key={book.id}
-          >
-            <h5>{book.volumeInfo.title}</h5>
-            <p>
-              {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
-            </p>
-            <img src={book.volumeInfo.imageLinks?.thumbnail} />
-          </div>
-        ))}
-      </div>
+      {loading ? (
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      ) : (
+        <div id="myLibraryArea" className="row mt-2">
+          {books.map((book) => (
+            <div
+              className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
+              id="book"
+              key={book.id}
+            >
+              <h5>{book.volumeInfo.title}</h5>
+              <p>
+                {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
+              </p>
+              <img src={book.volumeInfo.imageLinks?.thumbnail} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
