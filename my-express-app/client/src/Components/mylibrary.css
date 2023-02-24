@@ -9,6 +9,10 @@ h2 {
 }
 
 #seeMore {
-  width: 50%;
+  max-width: 50%;
   margin: 0 auto;
+}
+
+#deleteIcon {
+  padding-top: 0.4rem;
 }
