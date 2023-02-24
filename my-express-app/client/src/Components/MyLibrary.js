@@ -65,7 +65,7 @@ function MyLibrary() {
         </div>
       ) : (
         <div id="myLibraryArea" className="row mt-2">
-          {books.map((book) => (
+          {books.slice(0, 3).map((book) => (
             <div
               className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
               id="book"

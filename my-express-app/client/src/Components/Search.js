@@ -150,8 +150,8 @@ function Search({ searchResultsCB }) {
         </div>
       </div>
       {loading ? (
-        <div class="spinner-border text-warning" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-border text-warning mb-5" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
         <div id="searchResults" className="container mt-2 mb-4">

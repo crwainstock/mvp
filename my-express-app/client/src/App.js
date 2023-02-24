@@ -1,25 +1,16 @@
-// import React, { useState, useEffect } from "react";
-import Search from "./Components/Search";
-import MyLibrary from "./Components/MyLibrary";
+import Home from "./Components/Home";
+
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import MyLibraryView from "./Components/MyLibraryView";
 
 function App() {
-  const handleSearch = () => {
-    //idk know what I need here.
-  };
-
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/myLibrary" element={<MyLibraryView />} />
       </Routes>
-      <div className="App">
-        <h1>Kid Library</h1>
-        <MyLibrary />
-        <Search searchResultsCB={handleSearch} />
-      </div>
     </BrowserRouter>
   );
 }
