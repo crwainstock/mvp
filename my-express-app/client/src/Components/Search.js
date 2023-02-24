@@ -81,7 +81,7 @@ function Search({ searchResultsCB }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ bookId: e.target.id }),
+      body: JSON.stringify({ bookId: e }),
     };
     try {
       let results = await fetch(`/mylibrary`, options);
@@ -148,7 +148,7 @@ function Search({ searchResultsCB }) {
             <div
               className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
               id="result"
-              key={result.etag}
+              key={result.id}
             >
               <img src={result.volumeInfo.imageLinks?.thumbnail} />
               <h5>{result.volumeInfo.title}</h5>
@@ -157,7 +157,12 @@ function Search({ searchResultsCB }) {
                 {result.volumeInfo.authors?.[1]}
               </p>
               <p>{result.volumeInfo.description}</p>
-              <div id="addIcon" onClick={addBook}>
+              <div
+                id="addIcon"
+                onClick={(e) => {
+                  addBook(result.id);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
