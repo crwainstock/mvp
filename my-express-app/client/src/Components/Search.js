@@ -7,6 +7,7 @@ function Search({ searchResultsCB }) {
   const [selected, setSelected] = useState(true); // State variable for radio buttons -- true = search by title, false = search by author
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   // I need this to limit results to books for kids,
   //but it's creating problems with search results (other categories exist that might be relevant)
@@ -94,6 +95,10 @@ function Search({ searchResultsCB }) {
       let data = await results.json();
       console.log(data);
       setLoading(false);
+      // Trying to add something here to flip success boolean to trigger toast (success message)
+      // if (data.id === e) {
+      //   setSuccess(true);
+      // }
     } catch (err) {
       console.log(err);
     }
