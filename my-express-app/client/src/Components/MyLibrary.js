@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./mylibrary.css";
 
 function MyLibrary() {
@@ -67,7 +68,7 @@ function MyLibrary() {
         <div id="myLibraryArea" className="row mt-2">
           {books.slice(0, 3).map((book) => (
             <div
-              className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
+              className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-3"
               id="book"
               key={book.id}
             >
@@ -78,6 +79,13 @@ function MyLibrary() {
               <img src={book.volumeInfo.imageLinks?.thumbnail} />
             </div>
           ))}
+          <div id="linkToLibraryView" className="mt-4">
+            <Link to="/myLibrary">
+              <button className="btn btn-warning">
+                <h5>Visit my library</h5>
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </div>
