@@ -56,6 +56,25 @@ function MyLibraryView() {
     }
   };
 
+  const deleteBook = async (e) => {
+    setLoading(true);
+    let options = {
+      method: "DELETE",
+    };
+    try {
+      let results = await fetch(`/mylibrary/${e.target.id}`, options);
+      let data = await results.json();
+      console.log(data);
+      setLoading(false);
+      // Trying to add something here to flip success boolean to trigger toast (success message)
+      // if (data.id === e) {
+      //   setSuccess(true);
+      // }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="App">
       <div className="container mt-4 mb-4">
@@ -72,8 +91,8 @@ function MyLibraryView() {
           </div>
         </div>
         {loading ? (
-          <div class="spinner-border text-warning" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border text-warning" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
           <div id="myLibraryArea" className="row mt-2">
@@ -92,7 +111,13 @@ function MyLibraryView() {
                   <button id="seeMore" className="btn btn-primary col">
                     See More
                   </button>
-                  <div id="deleteIcon" className="col-1">
+                  <div
+                    id="deleteIcon"
+                    className="col-1"
+                    onClick={(e) => {
+                      deleteBook(e.target.id);
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
