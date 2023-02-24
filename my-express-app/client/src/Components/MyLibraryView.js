@@ -7,7 +7,7 @@ function MyLibraryView({ books }) {
   return (
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
-      {loading ? (
+      {/* {loading ? (
         <div class="spinner-border text-warning" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -27,7 +27,7 @@ function MyLibraryView({ books }) {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

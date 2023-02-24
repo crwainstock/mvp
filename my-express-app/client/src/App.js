@@ -1,8 +1,9 @@
 import Home from "./Components/Home";
 
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyLibraryView from "./Components/MyLibraryView";
+import BookDetailView from "./Components/BookDetailView";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myLibrary" element={<MyLibraryView />} />
+        <Route path="/myLibrary/bookDetail" element={<BookDetailView />} />
       </Routes>
     </BrowserRouter>
   );
