@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../Components/mylibrary.css";
 
 function MyLibraryView() {
@@ -56,7 +57,18 @@ function MyLibraryView() {
 
   return (
     <div className="container mt-4 mb-4">
-      <h2>My Library</h2>
+      <div className="row">
+        <div className="col-10">
+          <h2>My Library</h2>
+        </div>
+        <div className="col">
+          <Link to="/">
+            <button className="btn btn-warning">
+              <h5>Home</h5>
+            </button>
+          </Link>
+        </div>
+      </div>
       {loading ? (
         <div class="spinner-border text-warning" role="status">
           <span class="visually-hidden">Loading...</span>
@@ -74,6 +86,9 @@ function MyLibraryView() {
                 {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
               </p>
               <img src={book.volumeInfo.imageLinks?.thumbnail} />
+              <div className="row">
+                <button className="btn btn-primary w-25">See More</button>
+              </div>
             </div>
           ))}
         </div>
