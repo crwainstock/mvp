@@ -1,13 +1,63 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "../Components/mylibrary.css";
 
-function MyLibraryView({ books }) {
+function MyLibraryView() {
+  const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchBooks();
+    console.log(books);
+  }, []);
+
+  const searchMyBooksById = async (bookId) => {
+    setLoading(true);
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: bookId }),
+    };
+    try {
+      //Search Google using bookId from database
+      let results = await fetch(`/mylibrary/searchById`, options);
+      let data = await results.json();
+      console.log(data); //Search is working, but rendering is not. -- individual objects with book details
+
+      setBooks((book) => [...book, data]); // Adding object of data to books array
+      console.log(books);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // This function gets books FROM DATABASE and loops through them, using the bookId to search the GOOGLE BOOKS API and return all book data
+  const fetchBooks = async () => {
+    setLoading(true);
+    try {
+      //Get books from database
+      let results = await fetch("/mylibrary");
+      let data = await results.json();
+      //Loop through books and search using bookId with the searchMyBooks function
+      //Should return full book data from Google & set books as that data
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].bookId); //Seems to be accessing the bookId here
+        await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
+      }
+      // console.log(books);
+      setLoading(false);
+      return books;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
-      {/* {loading ? (
+      {loading ? (
         <div class="spinner-border text-warning" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -27,7 +77,7 @@ function MyLibraryView({ books }) {
             </div>
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 }

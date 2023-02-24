@@ -1,9 +1,9 @@
-import Home from "./Components/Home";
+import Home from "./Pages/Home";
 
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MyLibraryView from "./Components/MyLibraryView";
-import BookDetailView from "./Components/BookDetailView";
+import MyLibraryView from "./Pages/MyLibraryView";
+import BookDetailView from "./Pages/BookDetailView";
 
 function App() {
   return (
