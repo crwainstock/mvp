@@ -28,6 +28,7 @@ function MyLibraryView() {
       console.log(data); //Search is working, but rendering is not. -- individual objects with book details
 
       setBooks((book) => [...book, data]); // Adding object of data to books array
+      //Could add something here to alphabatize the books?
       console.log(books);
       setLoading(false);
     } catch (err) {
@@ -56,43 +57,47 @@ function MyLibraryView() {
   };
 
   return (
-    <div className="container mt-4 mb-4">
-      <div className="row">
-        <div className="col-10">
-          <h2>My Library</h2>
+    <div className="App">
+      <div className="container mt-4 mb-4">
+        <div className="row">
+          <div className="col-10">
+            <h2 className="float-left">My Library</h2>
+          </div>
+          <div className="col">
+            <Link to="/">
+              <button className="btn btn-warning">
+                <h5>Home</h5>
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="col">
-          <Link to="/">
-            <button className="btn btn-warning">
-              <h5>Home</h5>
-            </button>
-          </Link>
-        </div>
-      </div>
-      {loading ? (
-        <div class="spinner-border text-warning" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      ) : (
-        <div id="myLibraryArea" className="row mt-2">
-          {books.map((book) => (
-            <div
-              className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
-              id="book"
-              key={book.id}
-            >
-              <h5>{book.volumeInfo.title}</h5>
-              <p>
-                {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
-              </p>
-              <img src={book.volumeInfo.imageLinks?.thumbnail} />
-              <div className="row">
-                <button className="btn btn-primary w-25">See More</button>
+        {loading ? (
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        ) : (
+          <div id="myLibraryArea" className="row mt-2">
+            {books.map((book) => (
+              <div
+                className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
+                id="book"
+                key={book.id}
+              >
+                <h5>{book.volumeInfo.title}</h5>
+                <p>
+                  {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
+                </p>
+                <img src={book.volumeInfo.imageLinks?.thumbnail} />
+                <div className="row mt-4">
+                  <button id="seeMore" className="btn btn-primary">
+                    See More
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
