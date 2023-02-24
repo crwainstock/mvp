@@ -74,6 +74,24 @@ function Search({ searchResultsCB }) {
     return searchResults;
   };
 
+  // Function to add book to database
+  const addBook = async (e) => {
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bookId: e.target.id }),
+    };
+    try {
+      let results = await fetch(`/mylibrary`, options);
+      let data = await results.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div id="searchArea" className="container mt-4">
       <div className="row">
@@ -130,7 +148,7 @@ function Search({ searchResultsCB }) {
             <div
               className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
               id="result"
-              key={result.id}
+              key={result.etag}
             >
               <img src={result.volumeInfo.imageLinks?.thumbnail} />
               <h5>{result.volumeInfo.title}</h5>
@@ -139,17 +157,19 @@ function Search({ searchResultsCB }) {
                 {result.volumeInfo.authors?.[1]}
               </p>
               <p>{result.volumeInfo.description}</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                className="bi bi-plus-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-              </svg>
+              <div id="addIcon" onClick={addBook}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  className="bi bi-plus-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
             </div>
           ))}
         </div>
