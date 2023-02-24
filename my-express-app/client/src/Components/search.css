@@ -5,3 +5,7 @@ h3 {
 #result img {
   margin: 1rem;
 }
+
+svg:hover {
+  cursor: pointer;
+}
