@@ -6,6 +6,7 @@ function Search({ searchResultsCB }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selected, setSelected] = useState(true); // State variable for radio buttons -- true = search by title, false = search by author
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // I need this to limit results to books for kids,
   //but it's creating problems with search results (other categories exist that might be relevant)
@@ -21,6 +22,7 @@ function Search({ searchResultsCB }) {
 
   //Function to use Google Books API and search BY TITLES -- POST function in index.js uses API and searches titles with searchTerm in body
   const searchBooksByTitle = async (searchTerm) => {
+    setLoading(true);
     let options = {
       method: "POST",
       headers: {
@@ -34,6 +36,7 @@ function Search({ searchResultsCB }) {
       // console.log(data.items);
       getJuvenileBooks(data.items);
       console.log(searchResults); //returning array of objects
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -41,6 +44,7 @@ function Search({ searchResultsCB }) {
 
   //Function to use Google Books API and search BY AUTHOR -- POST function in index.js uses API and searches AUTHORS with searchTerm in body
   const searchBooksByAuthor = async (searchTerm) => {
+    setLoading(true);
     let options = {
       method: "POST",
       headers: {
@@ -54,6 +58,7 @@ function Search({ searchResultsCB }) {
       // console.log(data.items);
       getJuvenileBooks(data.items);
       console.log(searchResults); //returning array of objects
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -76,6 +81,7 @@ function Search({ searchResultsCB }) {
 
   // Function to add book to database
   const addBook = async (e) => {
+    setLoading(true);
     let options = {
       method: "POST",
       headers: {
@@ -87,6 +93,7 @@ function Search({ searchResultsCB }) {
       let results = await fetch(`/mylibrary`, options);
       let data = await results.json();
       console.log(data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -142,43 +149,49 @@ function Search({ searchResultsCB }) {
           </form>
         </div>
       </div>
-      <div id="searchResults" className="container mt-2 mb-4">
-        <div className="row">
-          {searchResults.map((result) => (
-            <div
-              className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
-              id="result"
-              key={result.id}
-            >
-              <img src={result.volumeInfo.imageLinks?.thumbnail} />
-              <h5>{result.volumeInfo.title}</h5>
-              <p>
-                {result.volumeInfo.authors?.[0]}{" "}
-                {result.volumeInfo.authors?.[1]}
-              </p>
-              <p>{result.volumeInfo.description}</p>
-              <div
-                id="addIcon"
-                onClick={(e) => {
-                  addBook(result.id);
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-plus-circle"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-            </div>
-          ))}
+      {loading ? (
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
-      </div>
+      ) : (
+        <div id="searchResults" className="container mt-2 mb-4">
+          <div className="row">
+            {searchResults.map((result) => (
+              <div
+                className="col-lg-4 col-md-6 col-12 ps-3 pe-3"
+                id="result"
+                key={result.id}
+              >
+                <img src={result.volumeInfo.imageLinks?.thumbnail} />
+                <h5>{result.volumeInfo.title}</h5>
+                <p>
+                  {result.volumeInfo.authors?.[0]}{" "}
+                  {result.volumeInfo.authors?.[1]}
+                </p>
+                <p>{result.volumeInfo.description}</p>
+                <div
+                  id="addIcon"
+                  onClick={(e) => {
+                    addBook(result.id);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    className="bi bi-plus-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
