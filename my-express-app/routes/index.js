@@ -130,7 +130,7 @@ router.post("/mylibrary", async (req, res) => {
 
   try {
     await db(sql);
-    getItems(req, res);
+    await getItems(req, res);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
