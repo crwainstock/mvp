@@ -108,9 +108,11 @@ function MyLibraryView() {
                 </p>
                 <img src={book.volumeInfo.imageLinks?.thumbnail} />
                 <div className="row mt-4">
-                  <button id="seeMore" className="btn btn-primary col">
-                    See More
-                  </button>
+                  <Link to={`/myLibrary/${book.id}`}>
+                    <button id="seeMore" className="btn btn-primary col">
+                      See More
+                    </button>
+                  </Link>
                   <div
                     id="deleteIcon"
                     className="col-1"
