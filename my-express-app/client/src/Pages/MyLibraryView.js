@@ -70,7 +70,7 @@ function MyLibraryView() {
     try {
       let results = await fetch(`/mylibrary/${e}`, options);
       //Searching database working -- with just e in fetch, returning whole database
-      //Need just id in fetch
+      //Need just id in fetch?
       let data = await results.json();
       console.log(data); //ALL
       setLoading(false);
