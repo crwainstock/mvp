@@ -51,7 +51,10 @@ function BookDetailView() {
       body: JSON.stringify({ rating: review }),
     };
     try {
-      let results = await fetch(`/mylibrary/${book.id}`, options);
+      // let results = await fetch(`/mylibrary`);
+      // for(let i=0; i<results.length; i++){
+      // }
+      // let results = await fetch(`/mylibrary/${book.id}`, options);
     } catch (err) {
       console.log(err);
     }
