@@ -41,9 +41,26 @@ function BookDetailView() {
     }
   };
 
+  //Not working yet.
+  const updateReview = async (e) => {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rating: e }),
+    };
+    try {
+      let results = await fetch(`/mylibrary/${book.id}`, options);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Code to update review & rating in DB here
+    //Code to update review & rating in DB here - Use PUT router function
+    updateReview(e);
   };
 
   return (
