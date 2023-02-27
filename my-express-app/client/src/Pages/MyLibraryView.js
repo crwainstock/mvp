@@ -61,42 +61,39 @@ function MyLibraryView() {
   // Return id (not the same as bookId)
   // Delete using this id
 
-  const deleteBook = async (e) => {
+  const fetchDBBooks = async (bookId) => {
     setLoading(true);
-    // Get book information from database -- ERROR: CAN'T READ id
-    let options = {
-      method: "GET",
-    };
     try {
-      let results = await fetch(`/mylibrary/${e}`, options);
-      //Searching database working -- with just e in fetch, returning whole database
-      //Need just id in fetch?
+      let results = await fetch(`/mylibrary`);
       let data = await results.json();
-      console.log(data); //ALL
+      for (let i = 0; i < data.length; i++) {
+        if (bookId === data[i].bookId) {
+          let bookToDelete = data[i].id;
+          console.log(bookToDelete);
+          return bookToDelete;
+        }
+        //Use function to search for specific bookId
+        //Return id (not bookId) to use in DELETE function
+      }
       setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
 
-  // const deleteBook = async (e) => {
-  //   setLoading(true);
-  //   let options = {
-  //     method: "DELETE",
-  //   };
-  //   try {
-  //     let results = await fetch(`/mylibrary/${e.target.id}`, options);
-  //     let data = await results.json();
-  //     // console.log(data);
-  //     setLoading(false);
-  //     // Trying to add something here to flip success boolean to trigger toast (success message)
-  //     // if (data.id === e) {
-  //     //   setSuccess(true);
-  //     // }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const deleteBook = async (e) => {
+    let bookToDelete = await fetchDBBooks(e);
+
+    let options = {
+      method: "DELETE",
+    };
+    try {
+      await fetch(`/myLibrary/${bookToDelete}`, options);
+      console.log(books);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="App">
