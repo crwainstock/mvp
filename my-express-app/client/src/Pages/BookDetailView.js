@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./detailView.css";
 
 function BookDetailView() {
@@ -63,13 +63,25 @@ function BookDetailView() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //Code to update review & rating in DB here - Use PUT router function
-    updateReview(review);
+    updateReview(review); //Not working.
     setReview("");
     console.log(review); // Ok, setting review works.
   };
 
   return (
     <div className="container">
+      <div className="col">
+        <Link to="/">
+          <button className="btn btn-warning">
+            <h5>Home</h5>
+          </button>
+        </Link>
+        <Link to="/myLibrary">
+          <button className="btn btn-warning">
+            <h5>My Library</h5>
+          </button>
+        </Link>
+      </div>
       <div id="bookDetails" className="col mt-6">
         <img src={book.volumeInfo?.imageLinks?.thumbnail} />
         <h5>{book?.volumeInfo?.title}</h5>
