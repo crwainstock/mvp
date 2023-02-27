@@ -142,8 +142,8 @@ function MyLibraryView() {
                     <button
                       className="rounded btn btn-danger"
                       onClick={(e) => {
-                        deleteBook(e);
-                        console.log(e); // Returning those path values below...???
+                        deleteBook(book.id);
+                        console.log(book.id); // Returning those path values below...???
                       }}
                     >
                       {" "}
