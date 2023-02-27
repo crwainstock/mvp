@@ -9,7 +9,7 @@ function MyLibraryView() {
 
   useEffect(() => {
     fetchBooks();
-    console.log(books);
+    // console.log(books);
   }, []);
 
   const searchMyBooksById = async (bookId) => {
@@ -25,11 +25,11 @@ function MyLibraryView() {
       //Search Google using bookId from database
       let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
-      console.log(data); //Search is working, but rendering is not. -- individual objects with book details
+      // console.log(data); //individual objects with book details
 
       setBooks((book) => [...book, data]); // Adding object of data to books array
       //Could add something here to alphabatize the books?
-      console.log(books);
+      // console.log(books);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -45,7 +45,7 @@ function MyLibraryView() {
       //Loop through books and search using bookId with the searchMyBooks function
       //Should return full book data from Google & set books as that data
       for (let i = 0; i < data.length; i++) {
-        console.log(data[i].bookId); //Seems to be accessing the bookId here
+        // console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
       // console.log(books);
@@ -56,24 +56,45 @@ function MyLibraryView() {
     }
   };
 
+  // STARTED CREATING FUNCTION TO DELETE BOOKS FROM DATABASE, BUT IT'S NOT COMPLETE
+  // Use e.target.id (bookId) to search database
+  // Return id (not the same as bookId)
+  // Delete using this id
+
   const deleteBook = async (e) => {
     setLoading(true);
+    // Get book information from database -- ERROR: CAN'T READ id
     let options = {
-      method: "DELETE",
+      method: "GET",
     };
     try {
       let results = await fetch(`/mylibrary/${e.target.id}`, options);
       let data = await results.json();
       console.log(data);
       setLoading(false);
-      // Trying to add something here to flip success boolean to trigger toast (success message)
-      // if (data.id === e) {
-      //   setSuccess(true);
-      // }
     } catch (err) {
       console.log(err);
     }
   };
+
+  // const deleteBook = async (e) => {
+  //   setLoading(true);
+  //   let options = {
+  //     method: "DELETE",
+  //   };
+  //   try {
+  //     let results = await fetch(`/mylibrary/${e.target.id}`, options);
+  //     let data = await results.json();
+  //     // console.log(data);
+  //     setLoading(false);
+  //     // Trying to add something here to flip success boolean to trigger toast (success message)
+  //     // if (data.id === e) {
+  //     //   setSuccess(true);
+  //     // }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="App">

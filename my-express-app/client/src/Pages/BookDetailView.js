@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./detailView.css";
 
 function BookDetailView() {
   const [book, setBook] = useState([]);
@@ -42,14 +43,17 @@ function BookDetailView() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //Code to update review & rating in DB here
   };
 
   return (
     <div className="container">
-      <div id="bookDetails">
-        <img src={book.volumeInfo.imageLinks?.thumbnail} />
+      <div id="bookDetails" className="col mt-6">
+        <img src={book.volumeInfo?.imageLinks?.thumbnail} />
         <h5>{book?.volumeInfo?.title}</h5>
-        <h6>{book?.volumeInfo?.authors}</h6>
+        <p>
+          {book.volumeInfo?.authors[0]} {book.volumeInfo?.authors[1]}{" "}
+        </p>
         <p>{book?.volumeInfo?.description}</p>
       </div>
       <div id="ratings" className="offset-md-3 col-md-6 mb-3">
