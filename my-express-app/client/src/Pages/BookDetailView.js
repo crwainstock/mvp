@@ -70,27 +70,35 @@ function BookDetailView() {
 
   return (
     <div className="container">
-      <div className="col">
+      <div className="col mt-4">
         <Link to="/">
           <button className="btn btn-warning">
             <h5>Home</h5>
           </button>
         </Link>
         <Link to="/myLibrary">
-          <button className="btn btn-warning">
+          <button className="btn btn-warning ms-3 me-3">
             <h5>My Library</h5>
           </button>
         </Link>
       </div>
       <div id="bookDetails" className="col mt-6">
-        <img src={book.volumeInfo?.imageLinks?.thumbnail} />
-        <h5>{book?.volumeInfo?.title}</h5>
-        <p>
-          {book.volumeInfo?.authors[0]} {book.volumeInfo?.authors[1]}{" "}
-        </p>
-        <p>{book?.volumeInfo?.description}</p>
+        <div className="row">
+          <div className="offset-md-1 col">
+            <img
+              className="rounded mx-auto d-block"
+              src={book.volumeInfo?.imageLinks?.thumbnail}
+            />
+            <h5>{book?.volumeInfo?.title}</h5>
+            <h6>
+              {book.volumeInfo?.authors[0]} {book.volumeInfo?.authors[1]}{" "}
+            </h6>
+          </div>
+          <div className="col-8">
+            <p>{book?.volumeInfo?.description}</p>
+          </div>
+        </div>
       </div>
-
       <div id="ratings" className="offset-md-3 col-md-6 mb-3">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
