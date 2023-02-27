@@ -42,13 +42,13 @@ function BookDetailView() {
   };
 
   //Not working yet.
-  const updateReview = async (e) => {
+  const updateReview = async (review) => {
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ rating: e }),
+      body: JSON.stringify({ rating: review }),
     };
     try {
       let results = await fetch(`/mylibrary/${book.id}`, options);
@@ -60,7 +60,9 @@ function BookDetailView() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //Code to update review & rating in DB here - Use PUT router function
-    updateReview(e);
+    updateReview(review);
+    setReview("");
+    console.log(review); // Ok, setting review works.
   };
 
   return (
@@ -73,18 +75,19 @@ function BookDetailView() {
         </p>
         <p>{book?.volumeInfo?.description}</p>
       </div>
+
       <div id="ratings" className="offset-md-3 col-md-6 mb-3">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
             <h3>What did you think about this book?</h3>
           </label>
-          <textarea
+          <input
             type="textarea"
             className="form-control"
             placeholder="Write your review here"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-          ></textarea>
+          ></input>
         </form>
       </div>
     </div>
