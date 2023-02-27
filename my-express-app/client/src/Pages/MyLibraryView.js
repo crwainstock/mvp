@@ -100,7 +100,7 @@ function MyLibraryView() {
               <div
                 className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
                 id="book"
-                key={book.id}
+                key={book.id + book.volumeInfo.title}
               >
                 <h5>{book.volumeInfo.title}</h5>
                 <p>
@@ -125,7 +125,7 @@ function MyLibraryView() {
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-x-circle"
+                      className="bi bi-x-circle"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

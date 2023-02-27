@@ -12,7 +12,7 @@ function BookDetailView() {
   useEffect(() => {
     searchMyBooksById(ID);
     console.log(book);
-    console.log(params);
+    // console.log(params);
   }, []);
 
   const searchMyBooksById = async (ID) => {
@@ -48,7 +48,9 @@ function BookDetailView() {
     <div className="container">
       <div id="bookDetails">
         <h5>Book Details Go here</h5>
-        <h5>{book.volumeInfo.title}</h5>
+        <h5>{book?.volumeInfo?.title}</h5>
+        <h6>{book?.volumeInfo?.authors}</h6>
+        <p>{book?.volumeInfo?.description}</p>
       </div>
       <div id="ratings" className="offset-md-3 col-md-6 mb-3">
         <form onSubmit={handleSubmit}>
