@@ -174,6 +174,13 @@ function Search({ searchResultsCB }) {
                   {result.volumeInfo.authors?.[1]}
                 </p>
                 <p>{result.volumeInfo.description}</p>
+                {/* Add something here to render a message if trying to add book to library more than once. 
+                Add success message if book is added successfully.*/}
+                {/* {success ? (
+                  <p>This book has been added to your library!</p>
+                ) : (
+                  <p>This book is already in your library.</p>
+                )} */}
                 <div
                   id="addIcon"
                   onClick={(e) => {
