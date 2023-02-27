@@ -108,10 +108,11 @@ function MyLibraryView() {
     <div className="App">
       <div className="container mt-4 mb-4">
         <div className="row">
-          <div className="col-10">
-            <h2 className="float-left">My Library</h2>
+          <div className="col-md-4">
+            <h2>My Library</h2>
           </div>
-          <div className="col">
+          {/* How can I center the home button on mobile? */}
+          <div className="offset-md-6 offset-sm-5 offset-5 col-2">
             <Link to="/">
               <button className="btn btn-warning">
                 <h5>Home</h5>
@@ -120,7 +121,7 @@ function MyLibraryView() {
           </div>
         </div>
         {loading ? (
-          <div className="spinner-border text-warning" role="status">
+          <div className="spinner-border text-warning mt-4" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
@@ -144,7 +145,7 @@ function MyLibraryView() {
                   </Link>
                   <div id="deleteIcon" className="col" key={book.id}>
                     <button
-                      className="rounded btn btn-danger"
+                      className="rounded btn btn-danger mt-2"
                       onClick={(e) => {
                         deleteBook(book.id);
                         // console.log(book.id); // Returning those path values below...???
