@@ -155,7 +155,7 @@ router.delete("/mylibrary/:id", async (req, res) => {
   let id = Number(req.params.id);
   try {
     await db(`DELETE FROM mylibrary WHERE id = ${id}`);
-    getItems(req, res);
+    await getItems(req, res);
   } catch (err) {
     res.status(500).send(err);
   }

@@ -86,15 +86,19 @@ function MyLibraryView() {
   };
 
   const deleteBook = async (e) => {
+    setLoading(true);
     let bookToDelete = await fetchDBBooks(e); //id of book to delete
     console.log(bookToDelete); //undefined
     let options = {
       method: "DELETE",
     };
     try {
-      await fetch(`/myLibrary/${bookToDelete}`, options);
-
-      console.log(books); //All books - not changed.
+      let results = await fetch(`/myLibrary/${bookToDelete}`, options);
+      let data = await results.json();
+      console.log(data);
+      // setBooks(data.items);
+      setLoading(false);
+      // console.log(books);
     } catch (err) {
       console.log(err);
     }
@@ -143,7 +147,7 @@ function MyLibraryView() {
                       className="rounded btn btn-danger"
                       onClick={(e) => {
                         deleteBook(book.id);
-                        console.log(book.id); // Returning those path values below...???
+                        // console.log(book.id); // Returning those path values below...???
                       }}
                     >
                       {" "}
