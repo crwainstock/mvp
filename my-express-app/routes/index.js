@@ -111,7 +111,7 @@ router.post("/mylibrary/searchById", async (req, res) => {
   }
 });
 
-//GET ITEM BY ID -- Seems to be working. -- FROM DATABASE
+//GET ITEM BY ID  -- FROM DATABASE
 router.get("/mylibrary/:id", async (req, res) => {
   try {
     let results = await db(

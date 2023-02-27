@@ -64,13 +64,16 @@ function MyLibraryView() {
   const fetchDBBooks = async (bookId) => {
     setLoading(true);
     try {
+      //Get all database books
       let results = await fetch(`/mylibrary`);
       let data = await results.json();
+      console.log(data); // All database data
+      //Loop through books, look for bookId -- PROBLEM SEEMS TO BE IN THE LOOP
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToDelete = data[i].id;
-          console.log(bookToDelete);
-          return bookToDelete;
+          console.log(bookToDelete); //not even getting here...
+          return bookToDelete; //id of book to delete
         }
         //Use function to search for specific bookId
         //Return id (not bookId) to use in DELETE function
@@ -82,14 +85,15 @@ function MyLibraryView() {
   };
 
   const deleteBook = async (e) => {
-    let bookToDelete = await fetchDBBooks(e);
-
+    let bookToDelete = await fetchDBBooks(e); //id of book to delete
+    console.log(bookToDelete); //undefined
     let options = {
       method: "DELETE",
     };
     try {
       await fetch(`/myLibrary/${bookToDelete}`, options);
-      console.log(books);
+
+      console.log(books); //All books - not changed.
     } catch (err) {
       console.log(err);
     }
@@ -135,7 +139,7 @@ function MyLibraryView() {
                   </Link>
                   <div
                     id="deleteIcon"
-                    className="col-1"
+                    className="col"
                     onClick={(e) => {
                       deleteBook(e.target.id);
                     }}
