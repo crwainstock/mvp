@@ -47,7 +47,7 @@ function BookDetailView() {
   return (
     <div className="container">
       <div id="bookDetails">
-        <h5>Book Details Go here</h5>
+        <img src={book.volumeInfo.imageLinks?.thumbnail} />
         <h5>{book?.volumeInfo?.title}</h5>
         <h6>{book?.volumeInfo?.authors}</h6>
         <p>{book?.volumeInfo?.description}</p>
