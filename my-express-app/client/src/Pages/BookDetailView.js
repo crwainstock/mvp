@@ -7,31 +7,33 @@ function BookDetailView() {
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
   const params = useParams();
+  const ID = params.id;
 
   useEffect(() => {
-    searchMyBooksById();
+    searchMyBooksById(ID);
     console.log(book);
     console.log(params);
   }, []);
 
-  const searchMyBooksById = async (bookId) => {
+  const searchMyBooksById = async (ID) => {
+    // let ID = params.id;
     setLoading(true);
     let options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: bookId }),
+      body: JSON.stringify({ id: ID }),
     };
     try {
       //Search Google using bookId from database
-      let results = await fetch(`/mylibrary/${params.id}`, options);
+      let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
       console.log(data);
 
       setBook(data.item);
 
-      console.log(book);
+      // console.log(book);
       setLoading(false);
     } catch (err) {
       console.log(err);
