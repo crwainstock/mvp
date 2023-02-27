@@ -1,8 +1,15 @@
+#nav {
+  margin-bottom: 3rem;
+}
+
 #bookDetails {
-  margin-top: 3rem;
+  margin: auto;
 }
 
 h5,
 h6 {
   text-align: center;
+}
+.row {
+  margin: 0 auto;
 }

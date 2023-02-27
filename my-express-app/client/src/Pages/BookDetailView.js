@@ -70,7 +70,7 @@ function BookDetailView() {
 
   return (
     <div className="container">
-      <div className="col mt-4">
+      <div id="nav" className="col mt-4">
         <Link to="/">
           <button className="btn btn-warning">
             <h5>Home</h5>
@@ -82,11 +82,11 @@ function BookDetailView() {
           </button>
         </Link>
       </div>
-      <div id="bookDetails" className="col mt-6">
-        <div className="row">
-          <div className="offset-md-1 col">
+      <div id="bookDetails" className="col w-75 mt-6">
+        <div className="row md-9">
+          <div className="col">
             <img
-              className="rounded mx-auto d-block"
+              className="rounded mx-auto d-block mb-3"
               src={book.volumeInfo?.imageLinks?.thumbnail}
             />
             <h5>{book?.volumeInfo?.title}</h5>
@@ -94,12 +94,12 @@ function BookDetailView() {
               {book.volumeInfo?.authors[0]} {book.volumeInfo?.authors[1]}{" "}
             </h6>
           </div>
-          <div className="col-8">
+          <div className="col-md-8">
             <p>{book?.volumeInfo?.description}</p>
           </div>
         </div>
       </div>
-      <div id="ratings" className="offset-md-3 col-md-6 mb-3">
+      <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
             <h3>What did you think about this book?</h3>
