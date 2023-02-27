@@ -29,11 +29,11 @@ function BookDetailView() {
       //Search Google using bookId from database
       let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
-      console.log(data);
+      console.log(data); //returning full object of book data from Google
 
-      setBook(data.item);
+      setBook(data);
 
-      // console.log(book);
+      console.log(book);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -47,20 +47,21 @@ function BookDetailView() {
   return (
     <div className="container">
       <div id="bookDetails">
-        <h5>{book.title}</h5>
+        <h5>Book Details Go here</h5>
+        <h5>{book.volumeInfo.title}</h5>
       </div>
       <div id="ratings" className="offset-md-3 col-md-6 mb-3">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
             <h3>What did you think about this book?</h3>
           </label>
-          <input
+          <textarea
             type="textarea"
             className="form-control"
             placeholder="Write your review here"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-          ></input>
+          ></textarea>
         </form>
       </div>
     </div>
