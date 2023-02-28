@@ -96,6 +96,9 @@ function Search({ searchResultsCB }) {
       console.log(data);
       setLoading(false);
       setSuccess(true); //For toast message
+      setTimeout(function () {
+        setSuccess(false);
+      }, 5000);
     } catch (err) {
       console.log(err);
     }
@@ -188,7 +191,7 @@ function Search({ searchResultsCB }) {
         </div>
       )}
       {success ? (
-        <div className="rounded bg-info">
+        <div className="rounded bg-info mb-4">
           <h3>A book was added to your library!</h3>
         </div>
       ) : (
