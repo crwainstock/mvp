@@ -89,13 +89,15 @@ function BookDetailView() {
     }
   };
   //For review input field
+  // Having trouble rendering review conditionally below because this updates immediately.
   const handleChange = (e) => {
     setReview(e.target.value);
   };
+
   //For review input field
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setReview(e.target.value);
+
     updateReview(review);
     setReview("");
     console.log(review); // Ok, setting review works.
