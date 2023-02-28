@@ -6,6 +6,7 @@ import "../Components/mylibrary.css";
 function MyLibraryView() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     fetchBooks();
@@ -98,6 +99,10 @@ function MyLibraryView() {
       console.log(data);
       // setBooks(data.items);
       setLoading(false);
+      setSuccess(true);
+      setTimeout(function () {
+        setSuccess(false);
+      }, 5000);
       // console.log(books);
     } catch (err) {
       console.log(err);
@@ -126,6 +131,13 @@ function MyLibraryView() {
           </div>
         ) : (
           <div id="myLibraryArea" className="row mt-2">
+            {success ? (
+              <div className="rounded bg-info mb-4">
+                <h3>A book was deleted from your library!</h3>
+              </div>
+            ) : (
+              <div></div>
+            )}
             {books.map((book) => (
               <div
                 className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
