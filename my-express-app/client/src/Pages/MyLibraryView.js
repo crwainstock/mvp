@@ -129,9 +129,7 @@ function MyLibraryView() {
               <div className="rounded bg-info mb-4">
                 <h3>A book was deleted from your library!</h3>
               </div>
-            ) : (
-              <div></div>
-            )}
+            ) : null}
             {books.map((book) => (
               <div
                 className="col-lg-4 col-md-6 col-12 ps-3 pe-3 mt-5"
@@ -140,7 +138,7 @@ function MyLibraryView() {
               >
                 <h5>{book.volumeInfo.title}</h5>
                 <p>
-                  {book.volumeInfo.authors[0]} {book.volumeInfo.authors[1]}{" "}
+                  {book.volumeInfo?.authors?.[0]} {book.volumeInfo.authors?.[1]}{" "}
                 </p>
                 <img src={book.volumeInfo.imageLinks?.thumbnail} />
                 <div className="row mt-4">

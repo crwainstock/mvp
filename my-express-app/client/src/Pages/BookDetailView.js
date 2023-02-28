@@ -140,7 +140,7 @@ function BookDetailView() {
             />
             <h5>{book?.volumeInfo?.title}</h5>
             <h6>
-              {book.volumeInfo?.authors[0]} {book.volumeInfo?.authors[1]}{" "}
+              {book.volumeInfo?.authors?.[0]} {book.volumeInfo?.authors?.[1]}{" "}
             </h6>
           </div>
           <div className="col-md-8">
