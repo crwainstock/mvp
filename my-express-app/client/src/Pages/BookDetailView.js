@@ -145,7 +145,7 @@ function BookDetailView() {
       </div>
 {/* *** ANNA *** this is the div that you want to hide conditionally, right? ***/}
 {/* *** ANNA *** try using for your condition the book.review instead of the state variable review ***/}
-{/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** /}
+{/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** */}
       <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
