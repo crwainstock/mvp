@@ -87,11 +87,15 @@ function BookDetailView() {
       console.log(err);
     }
   };
-
+  //For review input field
+  const handleChange = (e) => {
+    setReview(e.target.value);
+  };
+  //For review input field
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Code to update review & rating in DB here - Use PUT router function
-    updateReview(review); //Not working.
+    // setReview(e.target.value);
+    updateReview(review);
     setReview("");
     console.log(review); // Ok, setting review works.
   };
@@ -149,7 +153,7 @@ function BookDetailView() {
               className="form-control"
               placeholder="Write your review here"
               value={review}
-              onChange={(e) => setReview(e.target.value)}
+              onChange={handleChange}
             ></input>
             <button className="btn btn-primary">Submit</button>
           </form>
