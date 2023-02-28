@@ -3,10 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import "./detailView.css";
 
 function BookDetailView() {
-  const [book, setBook] = useState([]);
+  const [book, setBook] = useState([]); //Book info from Google
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
   const params = useParams();
   const ID = params.id;
 
@@ -53,7 +54,7 @@ function BookDetailView() {
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToUpdate = data[i].id;
-          // console.log(bookToUpdate);
+
           return bookToUpdate; //id of book to update for PUT function below
         }
       }
