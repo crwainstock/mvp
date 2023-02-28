@@ -77,6 +77,7 @@ function BookDetailView() {
     try {
       let results = await fetch(`/myLibrary/${bookToUpdate}`, options);
       let data = await results.json();
+      console.log(data); //Returning all book data from database
 
       setLoading(false);
       setSuccess(true); //To show success message
@@ -114,7 +115,7 @@ function BookDetailView() {
           </button>
         </Link>
       </div>
-      <div id="bookDetails" className="col w-75 mt-6">
+      <div id="bookDetails" className="col w-75 mt-6 mb-6">
         {success ? (
           <div id="success" className="rounded bg-info mb-4">
             <h3>Your review has been updated!</h3>
