@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./detailView.css";
 
@@ -13,7 +12,7 @@ function BookDetailView() {
 
   useEffect(() => {
     searchMyBooksById(ID);
-    console.log(book);
+    // console.log(book);
     // console.log(params);
   }, []);
 
@@ -35,7 +34,7 @@ function BookDetailView() {
 
       setBook(data);
 
-      console.log(book);
+      // console.log(book);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -43,7 +42,7 @@ function BookDetailView() {
   };
 
   const fetchDBBooks = async (bookId) => {
-    console.log(bookId); //bookId, good.
+    // console.log(bookId); //bookId
     setLoading(true);
     try {
       //Get all database books
@@ -54,7 +53,7 @@ function BookDetailView() {
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToUpdate = data[i].id;
-          console.log(bookToUpdate);
+          // console.log(bookToUpdate);
           return bookToUpdate; //id of book to update for PUT function below
         }
       }
@@ -67,7 +66,7 @@ function BookDetailView() {
   //Not working yet.
   const updateReview = async () => {
     let bookToUpdate = await fetchDBBooks(book.id);
-    console.log(bookToUpdate);
+    // console.log(bookToUpdate);
     const options = {
       method: "PUT",
       headers: {
