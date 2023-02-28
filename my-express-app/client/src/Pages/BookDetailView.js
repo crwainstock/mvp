@@ -7,6 +7,7 @@ function BookDetailView() {
   const [book, setBook] = useState([]);
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const params = useParams();
   const ID = params.id;
 
@@ -45,7 +46,6 @@ function BookDetailView() {
     console.log(bookId); //bookId, good.
     setLoading(true);
     try {
-      // console.log(bookId);
       //Get all database books
       let results = await fetch(`/mylibrary`);
       let data = await results.json();
@@ -54,7 +54,7 @@ function BookDetailView() {
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToUpdate = data[i].id;
-          console.log(bookToUpdate); //not reaching this part of the code
+          console.log(bookToUpdate);
           return bookToUpdate; //id of book to update for PUT function below
         }
       }
@@ -80,6 +80,10 @@ function BookDetailView() {
       let data = await results.json();
 
       setLoading(false);
+      setSuccess(true); //To show success message
+      setTimeout(function () {
+        setSuccess(false); //To remove success message after a few seconds -- not necessary with page refresh, though. Could be smoother.
+      }, 5000);
     } catch (err) {
       console.log(err);
     }
@@ -108,6 +112,13 @@ function BookDetailView() {
         </Link>
       </div>
       <div id="bookDetails" className="col w-75 mt-6">
+        {success ? (
+          <div id="success" className="rounded bg-info mb-4">
+            <h3>Your review has been updated!</h3>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className="row md-9">
           <div className="col">
             <img
