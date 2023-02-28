@@ -87,7 +87,7 @@ function BookDetailView() {
       setLoading(false);
       setSuccess(true); //To show success message
       setTimeout(function () {
-        setSuccess(false); //To remove success message after a few seconds -- not necessary with page refresh, though. Could be smoother.
+        window.location.reload(); //To remove success message after a few seconds -- not necessary with page refresh, though. Could be smoother.
       }, 5000);
     } catch (err) {
       console.log(err);
@@ -105,13 +105,14 @@ function BookDetailView() {
 
     updateReview(review);
     setReview("");
-    window.location.reload();
+
     console.log(review); // Ok, setting review works.
   };
 
   return (
     <div className="container">
       <div id="nav" className="col mt-4">
+        {/* The styling for the buttons here could be better...kind of weird at different screen sizes */}
         <Link to="/">
           <button className="btn btn-warning">
             <h5>Home</h5>
