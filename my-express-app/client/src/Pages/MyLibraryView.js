@@ -6,7 +6,7 @@ import "../Components/mylibrary.css";
 function MyLibraryView() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false); //For success message upon deletion
 
   useEffect(() => {
     fetchBooks();
@@ -57,11 +57,7 @@ function MyLibraryView() {
     }
   };
 
-  // STARTED CREATING FUNCTION TO DELETE BOOKS FROM DATABASE, BUT IT'S NOT COMPLETE
-  // Use e.target.id (bookId) to search database
-  // Return id (not the same as bookId)
-  // Delete using this id
-
+  //FUNCTION TO GET DATABASE BOOKS BASED ON BOOKID FOR DELETE FUNCTION
   const fetchDBBooks = async (bookId) => {
     setLoading(true);
     try {
@@ -69,16 +65,14 @@ function MyLibraryView() {
       //Get all database books
       let results = await fetch(`/mylibrary`);
       let data = await results.json();
-      console.log(data); // All database data
-      //Loop through books, look for bookId -- PROBLEM SEEMS TO BE IN THE LOOP
+
+      //Loop through books, look for bookId
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToDelete = data[i].id;
-          console.log(bookToDelete); //not even getting here...
-          return bookToDelete; //id of book to delete
+          // console.log(bookToDelete);
+          return bookToDelete; //id of book to delete to be used in delete function below
         }
-        //Use function to search for specific bookId
-        //Return id (not bookId) to use in DELETE function
       }
       setLoading(false);
     } catch (err) {
@@ -86,24 +80,24 @@ function MyLibraryView() {
     }
   };
 
+  //DELETE FUNCTION -- USES ID RETURNED IN PREVIOUS FUNCTION TO DELETE BOOK FROM DATABASE
   const deleteBook = async (e) => {
     setLoading(true);
     let bookToDelete = await fetchDBBooks(e); //id of book to delete
-    console.log(bookToDelete); //undefined
+    // console.log(bookToDelete);
     let options = {
       method: "DELETE",
     };
     try {
       let results = await fetch(`/myLibrary/${bookToDelete}`, options);
       let data = await results.json();
-      console.log(data);
-      // setBooks(data.items);
+
       setLoading(false);
-      setSuccess(true);
-      setTimeout(function () {
-        setSuccess(false);
-      }, 5000);
-      // console.log(books);
+      window.location.reload(); //To manually refresh the page & update data -- idk why it wasn't working through the fetch functions
+      setSuccess(true); //For success message upon delete
+      // setTimeout(function () {
+      //   setSuccess(false); //To remove success message after a few seconds -- not necessary with page refresh, though. Could be smoother.
+      // }, 5000);
     } catch (err) {
       console.log(err);
     }
@@ -116,7 +110,7 @@ function MyLibraryView() {
           <div className="col-md-4">
             <h2>My Library</h2>
           </div>
-          {/* How can I center the home button on mobile? */}
+
           <div className="offset-md-6 offset-sm-5 offset-5 col-2">
             <Link to="/">
               <button className="btn btn-warning">
