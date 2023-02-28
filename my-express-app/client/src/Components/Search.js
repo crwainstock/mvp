@@ -154,6 +154,13 @@ function Search({ searchResultsCB }) {
           </form>
         </div>
       </div>
+      {success ? (
+        <div className="rounded bg-info mb-4">
+          <h3>A book was added to your library!</h3>
+        </div>
+      ) : (
+        <div></div>
+      )}
       {loading ? (
         <div className="spinner-border text-warning mb-5" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -189,13 +196,6 @@ function Search({ searchResultsCB }) {
             ))}
           </div>
         </div>
-      )}
-      {success ? (
-        <div className="rounded bg-info mb-4">
-          <h3>A book was added to your library!</h3>
-        </div>
-      ) : (
-        <div></div>
       )}
     </div>
   );
