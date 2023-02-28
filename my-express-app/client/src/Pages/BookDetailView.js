@@ -105,6 +105,7 @@ function BookDetailView() {
 
     updateReview(review);
     setReview("");
+    window.location.reload();
     console.log(review); // Ok, setting review works.
   };
 
@@ -144,22 +145,25 @@ function BookDetailView() {
           <div className="col-md-8">
             <p>{book?.volumeInfo?.description}</p>
           </div>
-          {/* Book review renders if it's updated here, but not if it already exists. This could be better. */}
+
           {bookData.review ? (
-            <div>
-              <p>{bookData.review}</p>
+            <div className="row mt-4">
+              <div className="col">
+                <h5>{bookData.review}</h5>
+              </div>
             </div>
           ) : null}
         </div>
       </div>
-      {/* *** ANNA *** this is the div that you want to hide conditionally, right? ***/}
-      {/* *** ANNA *** try using for your condition the book.review instead of the state variable review ***/}
-      {/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** */}
 
       <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
-            <h3>What did you think about this book?</h3>
+            {bookData.review ? (
+              <h3>Update your review here.</h3>
+            ) : (
+              <h3>What did you think about this book?</h3>
+            )}
           </label>
           <input
             type="textarea"
