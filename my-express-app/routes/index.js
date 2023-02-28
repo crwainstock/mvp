@@ -136,11 +136,11 @@ router.post("/mylibrary", async (req, res) => {
   }
 });
 
-//UPDATE RATING AND REVIEW -- works in postman
+//UPDATE REVIEW -- works in postman
 router.put("/mylibrary/:id", async (req, res) => {
-  const { rating, review } = req.body;
+  const { review } = req.body;
   const id = req.params.id;
-  const sql = `UPDATE mylibrary SET rating = "${rating}", review = "${review}" WHERE id = ${id}`;
+  const sql = `UPDATE mylibrary SET review = "${review}" WHERE id = ${id}`;
 
   try {
     await db(sql);

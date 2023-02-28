@@ -30,7 +30,7 @@ function BookDetailView() {
       //Search Google using bookId from database
       let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
-      console.log(data); //returning full object of book data from Google
+      // console.log(data); //returning full object of book data from Google
 
       setBook(data);
 
@@ -41,20 +41,45 @@ function BookDetailView() {
     }
   };
 
+  const fetchDBBooks = async (bookId) => {
+    console.log(bookId); //bookId, good.
+    setLoading(true);
+    try {
+      // console.log(bookId);
+      //Get all database books
+      let results = await fetch(`/mylibrary`);
+      let data = await results.json();
+
+      //Loop through books, look for bookId
+      for (let i = 0; i < data.length; i++) {
+        if (bookId === data[i].bookId) {
+          let bookToUpdate = data[i].id;
+          console.log(bookToUpdate); //not reaching this part of the code
+          return bookToUpdate; //id of book to update for PUT function below
+        }
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   //Not working yet.
-  const updateReview = async (review) => {
+  const updateReview = async () => {
+    let bookToUpdate = await fetchDBBooks(book.id);
+    console.log(bookToUpdate);
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ rating: review }),
+      body: JSON.stringify({ review: review }),
     };
     try {
-      // let results = await fetch(`/mylibrary`);
-      // for(let i=0; i<results.length; i++){
-      // }
-      // let results = await fetch(`/mylibrary/${book.id}`, options);
+      let results = await fetch(`/myLibrary/${bookToUpdate}`, options);
+      let data = await results.json();
+
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
