@@ -4,6 +4,7 @@ import "./detailView.css";
 
 function BookDetailView() {
   const [book, setBook] = useState([]); //Book info from Google
+  const [bookData, setBookData] = useState([]); //Book info from database
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -13,6 +14,7 @@ function BookDetailView() {
 
   useEffect(() => {
     searchMyBooksById(ID);
+    fetchDBBooks(ID);
     // console.log(book);
     // console.log(params);
   }, []);
@@ -54,6 +56,9 @@ function BookDetailView() {
       for (let i = 0; i < data.length; i++) {
         if (bookId === data[i].bookId) {
           let bookToUpdate = data[i].id;
+          let bookData = data[i]; //individual book data from database
+          setBookData(bookData); //individual book data from database -- used in rendering review
+          // console.log(bookData);
 
           return bookToUpdate; //id of book to update for PUT function below
         }
@@ -64,7 +69,6 @@ function BookDetailView() {
     }
   };
 
-  //Not working yet.
   const updateReview = async () => {
     let bookToUpdate = await fetchDBBooks(book.id);
     // console.log(bookToUpdate);
@@ -78,9 +82,7 @@ function BookDetailView() {
     try {
       let results = await fetch(`/myLibrary/${bookToUpdate}`, options);
       let data = await results.json();
-      console.log(data); //Returning all book data from database
-      //*** ANNA *** why does this api return all books? do you need all books or just the one that has been updated?
-      //*** ANNA *** maybe would make more sense to return just the updated and then store the updated info locally with setBook?
+      console.log(data);
 
       setLoading(false);
       setSuccess(true); //To show success message
@@ -142,11 +144,18 @@ function BookDetailView() {
           <div className="col-md-8">
             <p>{book?.volumeInfo?.description}</p>
           </div>
+          {/* Book review renders if it's updated here, but not if it already exists. This could be better. */}
+          {bookData.review ? (
+            <div>
+              <p>{bookData.review}</p>
+            </div>
+          ) : null}
         </div>
       </div>
-{/* *** ANNA *** this is the div that you want to hide conditionally, right? ***/}
-{/* *** ANNA *** try using for your condition the book.review instead of the state variable review ***/}
-{/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** */}
+      {/* *** ANNA *** this is the div that you want to hide conditionally, right? ***/}
+      {/* *** ANNA *** try using for your condition the book.review instead of the state variable review ***/}
+      {/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** */}
+
       <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
