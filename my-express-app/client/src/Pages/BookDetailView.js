@@ -78,6 +78,8 @@ function BookDetailView() {
       let results = await fetch(`/myLibrary/${bookToUpdate}`, options);
       let data = await results.json();
       console.log(data); //Returning all book data from database
+      //*** ANNA *** why does this api return all books? do you need all books or just the one that has been updated?
+      //*** ANNA *** maybe would make more sense to return just the updated and then store the updated info locally with setBook?
 
       setLoading(false);
       setSuccess(true); //To show success message
@@ -141,6 +143,9 @@ function BookDetailView() {
           </div>
         </div>
       </div>
+{/* *** ANNA *** this is the div that you want to hide conditionally, right? ***/}
+{/* *** ANNA *** try using for your condition the book.review instead of the state variable review ***/}
+{/* *** ANNA *** so when book info is updated after submit (and book now has a review) then you don't show this anymore *** /}
       <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
         <form onSubmit={handleSubmit}>
           <label htmlFor="review" className="form-label">
