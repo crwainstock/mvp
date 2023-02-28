@@ -95,10 +95,7 @@ function Search({ searchResultsCB }) {
       let data = await results.json();
       console.log(data);
       setLoading(false);
-      // Trying to add something here to flip success boolean to trigger toast (success message)
-      // if (data.id === e) {
-      //   setSuccess(true);
-      // }
+      setSuccess(true); //For toast message
     } catch (err) {
       console.log(err);
     }
@@ -176,33 +173,26 @@ function Search({ searchResultsCB }) {
                 <p>{result.volumeInfo.description}</p>
                 {/* Add something here to render a message if trying to add book to library more than once. 
                 Add success message if book is added successfully.*/}
-                {/* {success ? (
-                  <p>This book has been added to your library!</p>
-                ) : (
-                  <p>This book is already in your library.</p>
-                )} */}
-                <div
-                  id="addIcon"
+
+                <button
+                  className="rounded btn btn-success"
                   onClick={(e) => {
                     addBook(result.id);
                   }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-plus-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                  </svg>
-                </div>
+                  Add Book to my Library
+                </button>
               </div>
             ))}
           </div>
         </div>
+      )}
+      {success ? (
+        <div className="rounded bg-info">
+          <h3>A book was added to your library!</h3>
+        </div>
+      ) : (
+        <div></div>
       )}
     </div>
   );
