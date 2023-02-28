@@ -139,25 +139,18 @@ function BookDetailView() {
         </div>
       </div>
       <div id="ratings" className="offset-md-3 col-md-6 mb-3 mt-4">
-        {review ? (
-          <div>
-            <p>{review}</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="review" className="form-label">
-              <h3>What did you think about this book?</h3>
-            </label>
-            <input
-              type="textarea"
-              className="form-control"
-              placeholder="Write your review here"
-              value={review}
-              onChange={handleChange}
-            ></input>
-            <button className="btn btn-primary">Submit</button>
-          </form>
-        )}
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="review" className="form-label">
+            <h3>What did you think about this book?</h3>
+          </label>
+          <input
+            type="textarea"
+            className="form-control"
+            placeholder="Write your review here"
+            value={review}
+            onChange={handleChange}
+          ></input>
+        </form>
       </div>
     </div>
   );
