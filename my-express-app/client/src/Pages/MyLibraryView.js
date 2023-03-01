@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import "../Components/mylibrary.css";
 
 function MyLibraryView() {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState([]); //All books to be rendered
+  const [loading, setLoading] = useState(false); //For loading spinner
   const [success, setSuccess] = useState(false); //For success message upon deletion
 
   useEffect(() => {
-    fetchBooks();
+    fetchBooks(); //Get all book
     // console.log(books);
   }, []);
 
@@ -152,7 +152,6 @@ function MyLibraryView() {
                       className="rounded btn btn-danger mt-2"
                       onClick={(e) => {
                         deleteBook(book.id);
-                        // console.log(book.id); // Returning those path values below...???
                       }}
                     >
                       {" "}

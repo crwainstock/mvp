@@ -85,7 +85,7 @@ router.get("/mylibrary", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH BY TITLE -- Used in Search component, search field -- FROM GOOGLE BOOKS API
+// GET BOOK DATA BASED ON SEARCH BY TITLE -- Used in Search component, search field -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/searchByTitle", async (req, res) => {
   try {
     searchGoogleBooksByTitle(req, res); //function written line 32
@@ -94,7 +94,7 @@ router.post("/mylibrary/searchByTitle", async (req, res) => {
   }
 });
 
-// GET TITLE BASED ON SEARCH BY AUTHOR -- Used in Search component, search field -- FROM GOOGLE BOOKS API
+// GET BOOK DATA BASED ON SEARCH BY AUTHOR -- Used in Search component, search field -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/searchByAuthor", async (req, res) => {
   try {
     searchGoogleBooksByAuthor(req, res); //function written line 50
@@ -103,7 +103,7 @@ router.post("/mylibrary/searchByAuthor", async (req, res) => {
   }
 });
 
-// GET DETAILS BASED ON ID SEARCH -- Used in MyLibrary component -- FROM GOOGLE BOOKS API
+// GET BOOK DETAILS BASED ON ID SEARCH -- Used in MyLibrary component -- FROM GOOGLE BOOKS API
 router.post("/mylibrary/searchById", async (req, res) => {
   try {
     searchGoogleById(req, res); //function written line 14
@@ -112,7 +112,7 @@ router.post("/mylibrary/searchById", async (req, res) => {
   }
 });
 
-//GET ITEM BY ID  -- FROM DATABASE
+//GET ITEM BY ID  -- FROM DATABASE -- used in BookDetailView with rendering reviews from database
 router.get("/mylibrary/:id", async (req, res) => {
   try {
     let results = await db(
@@ -124,7 +124,7 @@ router.get("/mylibrary/:id", async (req, res) => {
   }
 });
 
-// ADD ITEMS TO LIBRARY -- seems to work in postman. not sure if it's complete, though.
+// ADD ITEMS TO LIBRARY -- Used in Search component
 router.post("/mylibrary", async (req, res) => {
   const { bookId } = req.body;
   const sql = `INSERT INTO mylibrary (bookId) VALUES ("${bookId}")`;
@@ -137,7 +137,7 @@ router.post("/mylibrary", async (req, res) => {
   }
 });
 
-//UPDATE REVIEW -- works in postman
+//UPDATE REVIEW -- Used in BookDetailView page
 router.put("/mylibrary/:id", async (req, res) => {
   const { review } = req.body;
   const id = req.params.id;
@@ -151,7 +151,7 @@ router.put("/mylibrary/:id", async (req, res) => {
   }
 });
 
-// DELETE ITEM BY ID -- WORKING IN POSTMAN
+// DELETE ITEM BY ID -- Used in MyLibrary page
 router.delete("/mylibrary/:id", async (req, res) => {
   let id = Number(req.params.id);
   try {
