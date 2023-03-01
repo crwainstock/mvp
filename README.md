@@ -103,3 +103,7 @@ This app includes most of the features I had envisioned when beginning this proj
 - Add activity feature in BookDetailView page where kids could do something related to the book (draw a picture, upload a picture of themselves reading or something related to the book, write or record a summary, write or record thoughts about the story or book, etc).
 - Add feature to allow MyLibraryView to be filtered by title (alphabetical order), by author, or perhaps by rating (if ratings are added to the app at some point).
 - Allow for user profiles (registration, logging in to see MyLibraryView, etc).
+
+## Thank you!
+
+I just want to say thank you to Anna and Joy at CodeOp! Your support during the course of this project has been invaluable. Thank you for your support!
