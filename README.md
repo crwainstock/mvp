@@ -26,6 +26,27 @@ The Kid Library app is a single-page application built with React, Express, Node
 
 - Run `npm run migrate` in the my-express-app folder of this repository, in a new terminal window. This will create a table called 'mylibrary' in your database.
 
+- If this doesn't work for some reason, you could also create a table manually in the MySQL CLI using the following commands:
+
+To create the mylibrary table:
+
+```
+CREATE TABLE mylibrary (
+   id int NOT NULL AUTO_INCREMENT,
+   bookId varchar(40),
+   rating int,
+   review varchar(255),
+    PRIMARY KEY (id)
+);
+```
+
+To make the bookId column unique (unable to have duplicate entries):
+
+```
+ALTER TABLE mylibrary
+ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
+```
+
 - Make sure you understand how the `mylibrary` table is constructed. In your MySQL console, you can run `use mybooks;` and then `describe mylibrary;` to see the structure of the students table.
 
 ### Development
