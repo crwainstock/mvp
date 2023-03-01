@@ -1,4 +1,4 @@
-# Kid Library MVP
+# Kid Library MVP 📚
 
 ## Introduction
 
@@ -62,5 +62,13 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 - _Note_: The client folder holds everything to do with the front end of the app. The my-express-app encapsulates the whole app, including all back end files and the client files.
 
 ## Functionality Overview
+
+- Front End
+  - This project includes pages and components.
+  - `App.js` is where the routes (pages) are defined.
+  - _Pages_ include:
+    - Home "/"
+    - MyLibraryView "/mylibrary"
+    - BookDetailView "/mylibrary/${bookId}"
 
 ## Looking Ahead
