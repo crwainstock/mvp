@@ -104,6 +104,11 @@ This app includes most of the features I had envisioned when beginning this proj
 - Add feature to allow MyLibraryView to be filtered by title (alphabetical order), by author, or perhaps by rating (if ratings are added to the app at some point).
 - Allow for user profiles (registration, logging in to see MyLibraryView, etc).
 
+## Contributing to the Project
+
+Please follow the basic contribution guidelines in the Contributor Covenant.
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+
 ## Thank you!
 
 I just want to say thank you to Anna and Joy at CodeOp! Your support during the course of this project has been invaluable. Thank you for your support!
