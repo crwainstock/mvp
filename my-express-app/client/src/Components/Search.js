@@ -10,7 +10,8 @@ function Search({ searchResultsCB }) {
   const [success, setSuccess] = useState(false);
 
   // I need this to limit results to books for kids,
-  //but it's creating problems with search results (other categories exist that might be relevant)
+  // but it's creating problems with search results (other categories exist that might be relevant)
+  // See more in the notes here: https://docs.google.com/document/d/16H9LM7R9L0kpnlxoho1FrG1MixFCQ_XpMKUT5S937Tk/edit?usp=sharing
   const getJuvenileBooks = (books) => {
     const juvenileBooks = books.filter((book) => {
       return (
