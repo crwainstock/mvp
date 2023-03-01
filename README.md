@@ -58,7 +58,8 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 ### Development
 
 - Open a terminal, and do `cd my-express-app`. Run `npm start` to start the Express server on port 5000.
-- In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+- In another terminal, do `cd my-express-app` and then `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+- _Note_: The client folder holds everything to do with the front end of the app. The my-express-app encapsulates the whole app, including all back end files and the client files.
 
 ## Functionality Overview
 
