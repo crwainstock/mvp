@@ -61,17 +61,17 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 - In another terminal, do `cd my-express-app` and then `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
 - _Note_: The client folder holds everything to do with the front end of the app. The my-express-app encapsulates the whole app, including all back end files and the client files.
 
-## Functionality Overview
+## Code & Functionality Overview
 
 - Front End
   - This project includes pages and components.
   - `App.js` is where the routes (pages) are defined.
   - _Pages_ include:
-    - Home "/"
+    - `Home` "/"
       - This page renders the `MyLibraryWidget` and `Search` components.
-    - MyLibraryView "/mylibrary"
-    - BookDetailView "/mylibrary/${bookId}"
+    - `MyLibraryView` "/mylibrary"
+    - `BookDetailView` "/mylibrary/${bookId}"
   - Each page includes code to fetch data from the external API and/or database.
-  - Since only the bookId is stored in the database, this value is used to search the Google Books API and return the detailed book information. It is also used in the BookDetailView to search the database and return the review data.
+  - Since only the bookId is stored in the database, this value is used to search the Google Books API and return the detailed book information. It is also used in the `BookDetailView` to search the database and return the review data.
 
 ## Looking Ahead
