@@ -64,6 +64,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 ## Code & Functionality Overview
 
 - **Front End**
+
   - This project includes pages and components.
   - `App.js` is where the routes (pages) are defined.
   - **Pages** include:
@@ -73,5 +74,11 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
     - `BookDetailView` "/mylibrary/${bookId}"
   - Each page includes code to fetch data from the external API and/or database.
   - Since only the bookId (from the external API) is stored in the database, this value is used to search the Google Books API and return the detailed book information. It is also used in the `BookDetailView` to search the database and return the review data.
+
+- **Back End**
+  - Project uses one MySQL table to store user-generated data (reviews). It is linked to the external API through use of the bookId values.
+  - `index.js` includes all of the router functions.
+    - The project uses **node-fetch** to allow for the use of fetch in the back end. You can read more about node-fetch [here](https://www.npmjs.com/package/node-fetch) if you're interested.
+      - Because the external API is accessed on the back end, fetches made from the front end include the URLs built for the project (rather than the Google API URLs).
 
 ## Looking Ahead
