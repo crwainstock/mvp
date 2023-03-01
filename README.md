@@ -68,7 +68,10 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
   - `App.js` is where the routes (pages) are defined.
   - _Pages_ include:
     - Home "/"
+      - This page renders the `MyLibraryWidget` and `Search` components.
     - MyLibraryView "/mylibrary"
     - BookDetailView "/mylibrary/${bookId}"
+  - Each page includes code to fetch data from the external API and/or database.
+  - Since only the bookId is stored in the database, this value is used to search the Google Books API and return the detailed book information. It is also used in the BookDetailView to search the database and return the review data.
 
 ## Looking Ahead
