@@ -32,7 +32,7 @@ ALTER TABLE mylibrary
 ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 ```
 
-- If this doesn't work for some reason, you could also create a table manually in the MySQL CLI using the following commands:
+- IF THIS DOESN'T WORK for some reason, you could also create a table manually in the MySQL CLI using the following commands:
 
 To create the mylibrary table:
 
@@ -97,4 +97,9 @@ You can watch [an app demo here](https://www.loom.com/share/32b795f8cc7649c28867
 
 This app includes most of the features I had envisioned when beginning this project. But, there are several things that could be added and refined in future iterations of this app.
 
--
+- Generate random library entries in the MyLibraryWidget component rather than just the first three in the database
+- Add feature to rate titles in BookDetailView page -- perahps a numerical rating 1-5 with smile faces, something appealing for kids
+- Add wishlist feature in Search component where books could be added to wishlist rather than mylibrary database.
+- Add activity feature in BookDetailView page where kids could do something related to the book (draw a picture, upload a picture of themselves reading or something related to the book, write or record a summary, write or record thoughts about the story or book, etc).
+- Add feature to allow MyLibraryView to be filtered by title (alphabetical order), by author, or perhaps by rating (if ratings are added to the app at some point).
+- Allow for user profiles (registration, logging in to see MyLibraryView, etc).
