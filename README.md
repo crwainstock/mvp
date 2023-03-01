@@ -74,6 +74,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
     - `BookDetailView` "/mylibrary/${bookId}"
   - Each page includes code to fetch data from the external API and/or database.
   - Since only the bookId (from the external API) is stored in the database, this value is used to search the Google Books API and return the detailed book information. It is also used in the `BookDetailView` to search the database and return the review data.
+  - You can see more about front end functions and how they're organized in each page/component in [this document](https://docs.google.com/document/d/16H9LM7R9L0kpnlxoho1FrG1MixFCQ_XpMKUT5S937Tk/edit?usp=sharing).
 
 - **Back End**
   - Project uses one MySQL table to store user-generated data (reviews). It is linked to the external API through use of the bookId values.
