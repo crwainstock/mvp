@@ -9,8 +9,9 @@ function BookDetailView() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const params = useParams();
-  const ID = params.id;
+  const params = useParams(); //A part of react-router
+  const ID = params.id; //Pulls the id from the react-router data to be used in the functions below --
+  // this bookId is also used in the URL for this page
 
   useEffect(() => {
     searchMyBooksById(ID);
@@ -20,7 +21,6 @@ function BookDetailView() {
   }, []);
 
   const searchMyBooksById = async (ID) => {
-    // let ID = params.id;
     setLoading(true);
     let options = {
       method: "POST",

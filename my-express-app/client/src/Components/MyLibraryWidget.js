@@ -9,10 +9,8 @@ function MyLibraryWidget() {
 
   useEffect(() => {
     fetchBooks();
-    console.log(books);
+    // console.log(books);
   }, []);
-
-  //I'm trying to use this function to take the bookId from the database and search the Google API, returning all the book data to render in the front end
 
   const searchMyBooksById = async (bookId) => {
     setLoading(true);
