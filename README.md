@@ -25,6 +25,12 @@ The Kid Library app is an application built with React, Express, Node, and MySQL
 ```
 
 - Run `npm run migrate` in the my-express-app folder of this repository, in a new terminal window. This will create a table called 'mylibrary' in your database.
+  - You'll need to update the bookId column so it won't accept duplicate entries:
+
+```
+ALTER TABLE mylibrary
+ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
+```
 
 - If this doesn't work for some reason, you could also create a table manually in the MySQL CLI using the following commands:
 
@@ -88,3 +94,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 You can watch [an app demo here](https://www.loom.com/share/32b795f8cc7649c2886781d2e89ea99c).
 
 ## Looking Ahead
+
+This app includes most of the features I had envisioned when beginning this project. But, there are several things that could be added and refined in future iterations of this app.
+
+-
