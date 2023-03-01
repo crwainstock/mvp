@@ -49,6 +49,8 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 - Make sure you understand how the `mylibrary` table is constructed. In your MySQL console, you can run `use mybooks;` and then `describe mylibrary;` to see the structure of the students table.
 
+- `Note`: The rating column of the table isn't necessary at this point in development. It was created with a rating feature in mind, but that feature hasn't made it into the app yet.
+
 ### Development
 
 - Run `npm start` in project directory to start the Express server on port 5000.
