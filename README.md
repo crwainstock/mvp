@@ -80,5 +80,6 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
   - `index.js` includes all of the router functions.
     - The project uses **node-fetch** to allow for the use of fetch in the back end. You can read more about node-fetch [here](https://www.npmjs.com/package/node-fetch) if you're interested.
       - Because the external API is accessed on the back end, fetches made from the front end include the URLs built for the project (rather than the Google API URLs).
+  - You can see more about router functions and how they're organized in [this document](https://docs.google.com/document/d/15Zsi57j_uF6vQbdLi3YIE2zm1OKTCM4QIMPd1E8kLK0/edit?usp=sharing).
 
 ## Looking Ahead
