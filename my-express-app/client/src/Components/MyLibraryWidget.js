@@ -59,8 +59,8 @@ function MyLibraryWidget() {
     <div className="container mt-4 mb-4">
       <h2>My Library</h2>
       {loading ? (
-        <div class="spinner-border text-warning" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-border text-warning" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
         <div id="myLibraryArea" className="row mt-2">
