@@ -49,7 +49,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 - Make sure you understand how the `mylibrary` table is constructed. In your MySQL console, you can run `use mybooks;` and then `describe mylibrary;` to see the structure of the students table.
 
-- `Notes about mylibrary table`:
+- Notes about mylibrary table:
   - `id` -- This column is generated automatically in the database. It serves as the primary key for the table.
   - `bookId` -- This column is taken from the Google Books API. It is integral to the functionality of the app. It is what connects the database to the book detail information in the Google API. Initially, this was used as the id for the table, but there were some problems related to the values not being numerical.
   - `rating` -- This column isn't necessary at this point in development. It was created with a rating feature in mind, but that feature hasn't made it into the app yet. It was meant to hold a numerical rating for each book.
@@ -57,7 +57,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 ### Development
 
-- Run `npm start` in project directory to start the Express server on port 5000.
+- Open a terminal, and do `cd my-express-app`. Run `npm start` to start the Express server on port 5000.
 - In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
 
 ## Functionality Overview
