@@ -92,6 +92,10 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
       - Because the external API is accessed on the back end, fetches made from the front end include the URLs built for the project (rather than the Google API URLs).
   - You can see more about router functions and how they're organized in [this document](https://docs.google.com/document/d/15Zsi57j_uF6vQbdLi3YIE2zm1OKTCM4QIMPd1E8kLK0/edit?usp=sharing).
 
+-**External API**
+
+- [This document](https://docs.google.com/document/d/1TqOBXKuoiHzE9XssIHymhAjA-HtkxkwghmaodOgzPIk/edit?usp=sharing) includes some notes and links to useful information about the Google Books external API.
+
 ## App Demo
 
 You can watch [an app demo here](https://www.loom.com/share/32b795f8cc7649c2886781d2e89ea99c).
