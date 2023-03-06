@@ -95,7 +95,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 - **External API**
 
-- [This document](https://docs.google.com/document/d/1TqOBXKuoiHzE9XssIHymhAjA-HtkxkwghmaodOgzPIk/edit?usp=sharing) includes some notes and links to useful information about the Google Books external API.
+  - [This document](https://docs.google.com/document/d/1TqOBXKuoiHzE9XssIHymhAjA-HtkxkwghmaodOgzPIk/edit?usp=sharing) includes some notes and links to useful information about the Google Books external API.
 
 ## App Demo
 
