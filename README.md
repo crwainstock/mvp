@@ -107,6 +107,7 @@ This app includes most of the features I had envisioned when beginning this proj
 - Add activity feature in BookDetailView page where kids could do something related to the book (draw a picture, upload a picture of themselves reading or something related to the book, write or record a summary, write or record thoughts about the story or book, etc).
 - Add feature to allow MyLibraryView to be filtered by title (alphabetical order), by author, or perhaps by rating (if ratings are added to the app at some point).
 - Allow for user profiles (registration, logging in to see MyLibraryView, etc).
+- Add dashboard to allow for multiple user profiles (multiple children?) in one account.
 
 ## Contributing to the Project
 
