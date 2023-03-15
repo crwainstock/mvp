@@ -1,8 +1,8 @@
-# Kid Library MVP 📚
+# My Library App 📚
 
 ## Introduction
 
-The Kid Library app is an application built with React, Express, Node, and MySQL and styled with Bootstrap. It uses React-Router to enable multiple page navigation and the Google Books API to access book details and information.
+The My Library App is an application built with React, Express, Node, and MySQL and styled with Bootstrap. It uses React-Router to enable multiple page navigation and the Google Books API to access book details and information.
 
 ## Setup
 
