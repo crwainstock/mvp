@@ -44,14 +44,14 @@ export default function Login() {
           onChange={handleChange}
           name="username"
           type="text"
-          className="form-control mb-2"
+          className="form-control mb-2 w-50 justify-content-center"
         />
         <input
           value={credentials.password}
           onChange={handleChange}
           name="password"
           type="password"
-          className="form-control mb-2"
+          className="form-control mb-2 w-50 justify-content-center"
         />
         <button className="btn btn-primary" onClick={login}>
           Log in
