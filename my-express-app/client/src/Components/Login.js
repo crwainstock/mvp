@@ -38,20 +38,21 @@ export default function Login() {
 
   return (
     <div>
-      <div>
+      <div className="m-auto">
+        {/* Not sure how to center input fields */}
         <input
           value={credentials.username}
           onChange={handleChange}
           name="username"
           type="text"
-          className="form-control mb-2 w-50 justify-content-center"
+          className="form-control mb-2 w-50"
         />
         <input
           value={credentials.password}
           onChange={handleChange}
           name="password"
           type="password"
-          className="form-control mb-2 w-50 justify-content-center"
+          className="form-control mb-2 w-50"
         />
         <button className="btn btn-primary" onClick={login}>
           Log in
