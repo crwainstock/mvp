@@ -6,15 +6,16 @@ const usersShouldBeLoggedIn = require("../guards/usersShouldBeLoggedIn");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const supersecret = process.env.SUPER_SECRET;
-const saltrounds = process.env.SALTROUNDS;
-// const saltRounds = 10;
+// const saltrounds = process.env.SALTROUNDS;
+const saltRounds = 10;
 
 //GET ALL USERS
 router.get("/", async (req, res) => {
   try {
-    let sql = `SELECT * FROM users`;
-    await db(sql);
-    res.status(200).send({ message: "success" });
+    const result = await db(`SELECT * FROM users`);
+    const items = result.data;
+    res.send(items);
+    // res.status(200).send({ message: "success" });
   } catch (err) {
     res.status(400).send({ error: err.message });
   }
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
 //REGISTRATION ROUTE
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  const hashedPWD = await bcrypt.hash(password, saltrounds); //Number called salt-rounds
+  const hashedPWD = await bcrypt.hash(password, saltRounds); //Number called salt-rounds
   try {
     let sql = `INSERT into users (username, password) VALUES ("${username}", "${hashedPWD}")`;
     await db(sql);
