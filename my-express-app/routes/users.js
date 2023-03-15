@@ -6,8 +6,8 @@ const usersShouldBeLoggedIn = require("../guards/usersShouldBeLoggedIn");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const supersecret = process.env.SUPER_SECRET;
-// const saltrounds = process.env.SALTROUNDS;
-const saltRounds = 10;
+// const saltRounds = process.env.SALTROUNDS; //Idk. Getting 404 error when trying to use saltrounds this way
+const saltRounds = 10; //Working with saltrounds defined here.
 
 //GET ALL USERS
 router.get("/", async (req, res) => {
