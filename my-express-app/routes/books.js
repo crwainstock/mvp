@@ -22,7 +22,7 @@ router.get("/books", async (req, res) => {
 
 // POST a new book -- NOT COMPLETE -- HOW TO USE USER ID HERE?
 router.post("/books", async function (req, res) {
-  let { bookId, userId } = req.body; // Where does userId come from?
+  let { bookId } = req.body; // Should userId be here? Where does it come from?
 
   let sql = `
         INSERT INTO books (bookId)
@@ -37,7 +37,7 @@ router.post("/books", async function (req, res) {
     let newBookId = results.data[0].insertId;
 
     // Add book to junction table --NOT COMPLETE FROM HERE DOWN
-    if (userId && userId.length) {
+    if (authorIds && authorIds.length) {
       let vals = [];
       for (let authId of authorIds) {
         vals.push(`(${newBookId}, ${authId})`);
