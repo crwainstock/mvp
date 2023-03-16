@@ -3,15 +3,18 @@ const router = express.Router();
 const db = require("../model/helper"); //So this file can access the helper functions.
 const fetch = require("node-fetch");
 
-/* GET home page. */
+// GET home page. -- working in postman
 router.get("/", function (req, res, next) {
-  res.send("Welcome to My Library API"); //This is returning something else? The index.html in the public folder for Express
+  res.send("Welcome to My Library API");
 });
 
 // GET ALL BOOKS IN DATABASE -- getting 404 error
 router.get("/books", async (req, res) => {
   try {
-    getItems(res);
+    const result = await db(`SELECT * FROM books`);
+    const items = result.data;
+    console.log(items);
+    res.send(items);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -20,15 +23,16 @@ router.get("/books", async (req, res) => {
 // NEEDS TO BE UPDATED TO GET BOOKS FOR SPECIFIC USER -- TABLES: users, user_books, books
 
 // GET ALL BOOKS FROM DATABASE -- used in other router functions to update database content in front end
-const getItems = async (req, res) => {
-  try {
-    const result = await db(`SELECT * FROM books`);
-    const items = result.data;
-    res.send(items);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-};
+// const getItems = async (req, res) => {
+//   try {
+//     const result = await db(`SELECT * FROM books`);
+//     const items = result.data;
+//     console.log(items);
+//     res.send(items);
+//   } catch (err) {
+//     res.status(500).send(err.message);
+//   }
+// };
 
 //Google Books API Fetches
 
@@ -85,3 +89,5 @@ const searchGoogleBooksByAuthor = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
+
+module.exports = router;
