@@ -20,6 +20,43 @@ router.get("/books", async (req, res) => {
   }
 });
 
+// POST a new book -- NOT COMPLETE -- HOW TO USE USER ID HERE?
+router.post("/books", async function (req, res) {
+  let { bookId } = req.body;
+
+  let sql = `
+        INSERT INTO books (bookId)
+        VALUES ("${bookId}");
+        SELECT LAST_INSERT_ID();
+    `;
+
+  try {
+    // Insert the book
+    let results = await db(sql);
+    // The results contain the new ID thanks to SELECT LAST_INSERT_ID()
+    let newBookId = results.data[0].insertId;
+
+    // Add book to junction table
+    if (authorIds && authorIds.length) {
+      let vals = [];
+      for (let authId of authorIds) {
+        vals.push(`(${newBookId}, ${authId})`);
+      }
+      let sql = `
+                INSERT INTO user_books (user_id, book_id) 
+                VALUES ${vals.join(",")}
+                `;
+      await db(sql);
+    }
+
+    // Set status code for "resource created" and return all books
+    res.status(201);
+    sendAllBooks(res);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 // NEEDS TO BE UPDATED TO GET BOOKS FOR SPECIFIC USER -- TABLES: users, user_books, books
 
 //Google Books API Fetches
