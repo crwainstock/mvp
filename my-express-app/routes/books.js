@@ -8,7 +8,7 @@ router.get("/", function (req, res, next) {
   res.send("Welcome to My Library API"); //This is returning something else? The index.html in the public folder for Express
 });
 
-// GET ALL BOOKS IN DATABASE
+// GET ALL BOOKS IN DATABASE -- getting 404 error
 router.get("/books", async (req, res) => {
   try {
     getItems(res);
