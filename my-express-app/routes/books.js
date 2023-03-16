@@ -2,18 +2,18 @@ const express = require("express");
 const router = express.Router();
 const db = require("../model/helper"); //So this file can access the helper functions.
 const fetch = require("node-fetch");
+const ensureBookExists = require("../guards/ensureBookExists");
 
 // GET home page. -- working in postman
 router.get("/", function (req, res, next) {
   res.send("Welcome to My Library API");
 });
 
-// GET ALL BOOKS IN DATABASE -- getting 404 error
+// GET ALL BOOKS IN DATABASE -- working in postman & browser
 router.get("/books", async (req, res) => {
   try {
     const result = await db(`SELECT * FROM books`);
     const items = result.data;
-    console.log(items);
     res.send(items);
   } catch (err) {
     res.status(500).send(err);
