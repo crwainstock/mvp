@@ -22,18 +22,6 @@ router.get("/books", async (req, res) => {
 
 // NEEDS TO BE UPDATED TO GET BOOKS FOR SPECIFIC USER -- TABLES: users, user_books, books
 
-// GET ALL BOOKS FROM DATABASE -- used in other router functions to update database content in front end
-// const getItems = async (req, res) => {
-//   try {
-//     const result = await db(`SELECT * FROM books`);
-//     const items = result.data;
-//     console.log(items);
-//     res.send(items);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
-
 //Google Books API Fetches
 
 // Used for FE search with bookId from database -- in MyLibrary component, searchMyBooks function
