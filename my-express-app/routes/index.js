@@ -64,7 +64,9 @@ const searchGoogleBooksByAuthor = async (req, res) => {
   }
 };
 
-//GET ALL ITEMS FROM DATABASE -- used in other router functions to update database content in front end
+// NEEDS TO BE UPDATED TO GET BOOKS FOR SPECIFIC USER -- TABLES: users, user_books, books
+
+// GET ALL ITEMS FROM DATABASE -- used in other router functions to update database content in front end
 const getItems = async (req, res) => {
   try {
     const result = await db(`SELECT * FROM mylibrary`);
@@ -124,10 +126,11 @@ router.get("/mylibrary/:id", async (req, res) => {
   }
 });
 
+// UPDATED WITH books TABLE -- error: ER_NO_SUCH_TABLE: Table 'mybooks.mylibrary' doesn't exist
 // ADD ITEMS TO LIBRARY -- Used in Search component
 router.post("/mylibrary", async (req, res) => {
   const { bookId } = req.body;
-  const sql = `INSERT INTO mylibrary (bookId) VALUES ("${bookId}")`;
+  const sql = `INSERT INTO books (bookId) VALUES ("${bookId}")`;
 
   try {
     await db(sql);
