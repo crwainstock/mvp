@@ -75,7 +75,7 @@ function Search({ searchResultsCB }) {
     } else if (selected === false) {
       searchBooksByAuthor(searchTerm);
     }
-    searchResultsCB(searchResults); //Trying to pass data to parent here. Will need eventually for Adding books functionality
+    // searchResultsCB(searchResults); //Trying to pass data to parent here. Will need eventually for Adding books functionality
     setSearchTerm("");
     // console.log(searchResults); //returning array of objects
     return searchResults;

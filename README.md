@@ -99,7 +99,7 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 ## App Demo
 
-You can watch [an app demo here](https://www.loom.com/share/32b795f8cc7649c2886781d2e89ea99c).
+You can watch [an app demo here](https://www.awesomescreenshot.com/video/17020909?key=764d7a4fec005a681f07945ebcd6095e).
 You can see [demo presentation slides here](https://docs.google.com/presentation/d/1uuLLg3MbislgIm2dCRH5q6cGXP1T3_vkfbn1UX9gVQU/edit?usp=sharing).
 
 ## Looking Ahead
