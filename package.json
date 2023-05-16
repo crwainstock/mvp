@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "migrate": "node /client/model/database.js"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -7,5 +11,6 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20"
-  }
+  },
+  "devDependencies": {}
 }
