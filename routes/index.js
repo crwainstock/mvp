@@ -2,7 +2,7 @@
 
 var express = require("express");
 var router = express.Router();
-const db = require("../model/helper"); //So this file can access the helper functions.
+const db = require("./model/helper"); //So this file can access the helper functions.
 const fetch = require("node-fetch");
 
 /* GET home page. */
