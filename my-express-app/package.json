@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "migrate": "node /model/database.js",
-    "heroku-postbuild": "cd my-express-app && cd client && npm install && npm run build"
+    "migrate": "node /model/database.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
