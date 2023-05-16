@@ -15,7 +15,7 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 
 // Location of static assets
-app.use(express.static(path.join(__dirname, "/my-express-app/client/build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 // (All of your API routes should be here)
 // Respond with index.html for unmatched routes
 app.get("*", (req, res) => {
