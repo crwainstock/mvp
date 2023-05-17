@@ -3,7 +3,8 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper"); //So this file can access the helper functions.
-const fetch = require("node-fetch");
+// import fetch from "node-fetch";
+// const fetch = require("node-fetch");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {

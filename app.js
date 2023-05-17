@@ -1,20 +1,28 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 
-const indexRouter = require("./routes/books"); // This needs to reflect correct file path for routes
-const usersRouter = require("./routes/users");
+var indexRouter = require("./routes/index");
+// var usersRouter = require("./routes/users");
 
-const app = express();
-
+var app = express();
+// app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+
+// Location of static assets
+app.use(express.static(path.join(__dirname, "/client/build")));
+// (All of your API routes should be here)
+// Respond with index.html for unmatched routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 app.use("/", indexRouter); //This is the base URL
-app.use("/users", usersRouter); //This is the base URL for user content
+// app.use("/users", usersRouter);
 
 module.exports = app;
