@@ -1,15 +1,10 @@
-import { useContext } from "react";
-
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import MyLibraryView from "./Pages/MyLibraryView";
 import BookDetailView from "./Pages/BookDetailView";
-import { MyLibraryContext } from "./MyLibraryContext";
 
 function App() {
-  // Define data object with state variable & function to modify variable
-  // let myLibraryObj = {}
   return (
     <BrowserRouter>
       <Routes>
