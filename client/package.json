@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "my-libary-app-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,8 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "migrate": "node /model/database.js",
-    "heroku-postbuild": "cd my-express-app && cd client && npm install && npm run build"
+    "migrate": "node ./model/database.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "eslintConfig": {
     "extends": [
