@@ -70,7 +70,7 @@ const searchGoogleBooksByAuthor = async (req, res) => {
 // GET ALL ITEMS FROM DATABASE -- used in other router functions to update database content in front end
 const getItems = async (req, res) => {
   try {
-    const result = await db(`SELECT * FROM books`);
+    const result = await db(`SELECT * FROM mylibrary`);
     const items = result.data;
     res.send(items);
   } catch (err) {
