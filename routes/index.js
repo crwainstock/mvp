@@ -2,9 +2,12 @@
 
 var express = require("express");
 var router = express.Router();
-const db = require("../model/helper"); //So this file can access the helper functions.
-// import fetch from "node-fetch";
 // const fetch = require("node-fetch");
+// import fetch from "node-fetch";
+//Ok, with the latest version of node-fetch, you need to import it this way (see below)
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const db = require("../model/helper"); //So this file can access the helper functions.
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -65,8 +68,6 @@ const searchGoogleBooksByAuthor = async (req, res) => {
   }
 };
 
-// NEEDS TO BE UPDATED TO GET BOOKS FOR SPECIFIC USER -- TABLES: users, user_books, books
-
 // GET ALL ITEMS FROM DATABASE -- used in other router functions to update database content in front end
 const getItems = async (req, res) => {
   try {
@@ -78,7 +79,7 @@ const getItems = async (req, res) => {
   }
 };
 
-// GET ALL LIBRARY ITEMS -- FROM DATABASE
+// GET ALL LIBRARY ITEMS -- FROM DATABASE -- working in postman
 router.get("/mylibrary", async (req, res) => {
   try {
     let results = await db(`SELECT * FROM mylibrary;`);
@@ -90,6 +91,7 @@ router.get("/mylibrary", async (req, res) => {
 });
 
 // GET BOOK DATA BASED ON SEARCH BY TITLE -- Used in Search component, search field -- FROM GOOGLE BOOKS API
+// working in postman
 router.post("/mylibrary/searchByTitle", async (req, res) => {
   try {
     searchGoogleBooksByTitle(req, res); //function written line 32
@@ -128,11 +130,10 @@ router.get("/mylibrary/:id", async (req, res) => {
   }
 });
 
-// UPDATED WITH books TABLE
 // ADD ITEMS TO LIBRARY -- Used in Search component
 router.post("/mylibrary", async (req, res) => {
   const { bookId } = req.body;
-  const sql = `INSERT INTO books (bookId) VALUES ("${bookId}")`;
+  const sql = `INSERT INTO mylibrary (bookId) VALUES ("${bookId}")`;
 
   try {
     await db(sql);
