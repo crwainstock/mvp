@@ -24,7 +24,7 @@ The Kid Library app is an application built with React, Express, Node, and MySQL
   DB_PASS=YOURPASSWORD
 ```
 
-- Run `npm run migrate` in the my-express-app folder of this repository, in a new terminal window. This will create a table called 'mylibrary' in your database.
+- Run `npm run migrate` in the project directory folder of this repository, in a new terminal window. This will create a table called 'mylibrary' in your database.
   - You'll need to update the bookId column so it won't accept duplicate entries:
 
 ```
@@ -66,9 +66,9 @@ ADD CONSTRAINT unique_bookid UNIQUE KEY(bookId);
 
 ### Development
 
-- Open a terminal, and do `cd my-express-app`. Run `npm start` to start the Express server on port 5000.
-- In another terminal, do `cd my-express-app` and then `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
-- _Note_: The client folder holds everything to do with the front end of the app. The my-express-app encapsulates the whole app, including all back end files and the client files.
+- Open a terminal, and run `npm start` to start the Express server on port 5000.
+- In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+- _Note_: The client folder holds everything to do with the front end of the app.
 
 ## Code & Functionality Overview
 
