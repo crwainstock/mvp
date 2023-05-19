@@ -15,12 +15,12 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 
 // Location of static assets
-// app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 // (All of your API routes should be here)
 // Respond with index.html for unmatched routes
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "/client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 app.use("/", indexRouter); //This is the base URL
 // app.use("/users", usersRouter);

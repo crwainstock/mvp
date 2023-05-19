@@ -131,7 +131,7 @@ function BookDetailView() {
           </button>
         </Link>
       </div>
-      <div id="bookDetails" className="col w-75 mt-6 mb-6">
+      <div id="bookDetails" className="col w-75 mt-6 mb-3">
         {success ? (
           <div id="success" className="rounded bg-info mb-4">
             <h3>Your review has been updated!</h3>
@@ -155,9 +155,9 @@ function BookDetailView() {
           </div>
 
           {bookData.review ? (
-            <div className="row mt-4">
+            <div className="row mt-4 border rounded border-3 border-warning">
               <div className="col">
-                <h5>{bookData.review}</h5>
+                <h5 className="mt-3 mb-3">{bookData.review}</h5>
               </div>
             </div>
           ) : null}
