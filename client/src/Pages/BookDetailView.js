@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import striptags from "striptags";
+// const striptags = require("striptags"); // imports strigtag module to remove html tags when rendering reviews from GoogleBooksAPI
 import "./detailView.css";
 
 function BookDetailView() {
@@ -138,7 +140,7 @@ function BookDetailView() {
           <div></div>
         )}
         <div className="row md-9">
-          <div className="col">
+          <div className="col my-auto">
             <img
               className="rounded mx-auto d-block mb-3"
               src={book.volumeInfo?.imageLinks?.thumbnail}
@@ -149,7 +151,7 @@ function BookDetailView() {
             </h6>
           </div>
           <div className="col-md-8">
-            <p>{book?.volumeInfo?.description}</p>
+            <p>{striptags(book?.volumeInfo?.description)}</p>
           </div>
 
           {bookData.review ? (
@@ -173,7 +175,7 @@ function BookDetailView() {
           </label>
           <input
             type="textarea"
-            className="form-control"
+            className="form-control mb-5"
             placeholder="Write your review here"
             value={review}
             onChange={handleChange}
