@@ -101,6 +101,7 @@ router.post("/mylibrary/searchByTitle", async (req, res) => {
 });
 
 // GET BOOK DATA BASED ON SEARCH BY AUTHOR -- Used in Search component, search field -- FROM GOOGLE BOOKS API
+// -- working in postman
 router.post("/mylibrary/searchByAuthor", async (req, res) => {
   try {
     searchGoogleBooksByAuthor(req, res); //function written line 50
@@ -131,6 +132,7 @@ router.get("/mylibrary/:id", async (req, res) => {
 });
 
 // ADD ITEMS TO LIBRARY -- Used in Search component
+// -- working in postman
 router.post("/mylibrary", async (req, res) => {
   const { bookId } = req.body;
   const sql = `INSERT INTO mylibrary (bookId) VALUES ("${bookId}")`;
