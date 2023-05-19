@@ -34,7 +34,8 @@ function BookDetailView() {
       let results = await fetch(`/mylibrary/searchById`, options);
       let data = await results.json();
       // console.log(data); //returning full object of book data from Google
-
+      let arrayData = [data];
+      console.log(arrayData);
       setBook(data);
 
       // console.log(book);
@@ -88,7 +89,7 @@ function BookDetailView() {
       setSuccess(true); //To show success message
       setTimeout(function () {
         window.location.reload(); //To remove success message after a few seconds -- not necessary with page refresh, though. Could be smoother.
-      }, 5000);
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
@@ -108,6 +109,10 @@ function BookDetailView() {
 
     console.log(review); // Ok, setting review works.
   };
+
+  //Trying to delete html markings in data
+  // const bookDescription = book?.volumeInfo?.description;
+  // bookDescription = bookDescription.replace(/<\/?[^>]+(>|$)/g, "");
 
   return (
     <div className="container">
