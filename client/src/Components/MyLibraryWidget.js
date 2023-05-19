@@ -40,6 +40,7 @@ function MyLibraryWidget() {
     try {
       //Get books from database
       let results = await fetch("/mylibrary");
+      console.log(results);
       let data = await results.json();
       //Loop through books and search using bookId with the searchMyBooks function
       //Should return full book data from Google & set books as that data
@@ -47,7 +48,7 @@ function MyLibraryWidget() {
         console.log(data[i].bookId); //Seems to be accessing the bookId here
         await searchMyBooksById(data[i].bookId); //Use search function to look up book details using bookId
       }
-      // console.log(books);
+      console.log(books);
       setLoading(false);
       return books;
     } catch (err) {

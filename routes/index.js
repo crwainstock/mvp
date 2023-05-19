@@ -72,6 +72,7 @@ const searchGoogleBooksByAuthor = async (req, res) => {
 const getItems = async (req, res) => {
   try {
     const result = await db(`SELECT * FROM mylibrary`);
+    console.log(result);
     const items = result.data;
     res.send(items);
   } catch (err) {
