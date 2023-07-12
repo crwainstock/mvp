@@ -9,7 +9,7 @@ function MyLibraryWidget() {
 
   useEffect(() => {
     fetchBooks();
-    // console.log(books);
+    console.log(books);
   }, []);
 
   const searchMyBooksById = async (bookId) => {
@@ -41,6 +41,7 @@ function MyLibraryWidget() {
       //Get books from database
       let results = await fetch("/mylibrary");
       let data = await results.json();
+      console.log(data);
       //Loop through books and search using bookId with the searchMyBooks function
       //Should return full book data from Google & set books as that data
       for (let i = 0; i < data.length; i++) {

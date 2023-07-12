@@ -69,6 +69,7 @@ const getItems = async (req, res) => {
   try {
     const result = await db(`SELECT * FROM mylibrary`);
     const items = result.data;
+    console.log(items);
     res.send(items);
   } catch (err) {
     res.status(500).send(err.message);
@@ -79,6 +80,7 @@ const getItems = async (req, res) => {
 router.get("/mylibrary", async (req, res) => {
   try {
     let results = await db(`SELECT * FROM mylibrary;`);
+    console.log(results);
     res.send(results.data);
   } catch (err) {
     res.status(500).send(err);
